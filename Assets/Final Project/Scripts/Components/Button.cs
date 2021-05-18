@@ -6,37 +6,87 @@ namespace Interactable
 {
     public class Button : TriggeredAction
     {
-        // [SerializeField] private float pressTime = 
+        [Tooltip("How quickly the button to recesses completely when stepped on")]
+        [SerializeField] private float pressTime = 1f;
         
-        private TriggerType triggerType = TriggerType.Input;
+        [Tooltip("Tags of GameObjects that are allowed to trigger the button")]
+        [SerializeField] private List<string> triggerTags = new List<string>();
         
-        private bool pressed = false;
+        private TriggerType triggerType = TriggerType.Area;
+        
         private float pressedAmount = 0f;
         
+        private List<GameObject> gameObjectsPressing = new List<GameObject>();
+        private Vector3 originalPosition;
+        private float pressedRecessAmount = -0.34f;
+        
+        void Awake()
+        {
+            var colliderSubscriber = gameObject.GetComponentInChildren<IColliderSubscriber<Collider, bool>>();
+            if (colliderSubscriber != null)
+            {
+                colliderSubscriber.callbackEvent += OnTriggerEnterExit;
+            }
+            
+            originalPosition = transform.position;
+        }
+        
+        bool isPressed()
+        {
+            return gameObjectsPressing.Count > 0;
+        }
         
         void Update()
         {
-            if (pressed && pressedAmount < 1f)
+            if (isPressed() && pressedAmount < pressTime)
             {
-                OnPressedUpdate();
+                OnPressedUpdate(true);
             }
-            else if (!pressed && pressedAmount > 0f)
+            else if (!isPressed() && pressedAmount > 0f)
             {
-                
+                OnPressedUpdate(false);
             }
         }
         
-        void OnPressedUpdate()
+        void OnPressedUpdate(bool increasing)
         {
+            if (increasing)
+            {
+                pressedAmount = Mathf.Min(pressTime, pressedAmount + Time.deltaTime);
+            }
+            else
+            {
+                pressedAmount = Mathf.Max(0, pressedAmount - Time.deltaTime);
+            }
             
+            transform.position = originalPosition + new Vector3(0, pressedRecessAmount * pressedAmount / pressTime, 0);
+            OnActivate();
+        }
+        
+        void OnTriggerEnterExit(Collider other, bool entered)
+        {
+            if (triggerTags.Contains(other.gameObject.tag))
+            {
+                if (entered)
+                {
+                    gameObjectsPressing.Add(other.gameObject);
+                }
+                else
+                {
+                    gameObjectsPressing.Remove(other.gameObject);
+                }
+            }
         }
         
         /// <summary>
-        /// For the button, OnActivate is continuously called while the button is pressed.
+        /// Called every frame that the button is being pressed or unpressed (not when static)
         /// </summary>
         public override void OnActivate()
         {
-            
+            foreach (TriggerableAction trigger in triggeredActions)
+            {
+                trigger.onActivate.Invoke(new TriggerData(triggerType, isPressed(), pressedAmount / pressTime));
+            }
         }
     }
 }
