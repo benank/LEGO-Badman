@@ -20,10 +20,24 @@ namespace Interactable
         // Potentially also include cases for killing enemies
     }
     
+    public class TriggerData
+    {
+        public TriggerType triggerType;
+        public bool pressed;
+        public float pressedAmount;
+        
+        public TriggerData(TriggerType triggerType, bool pressed, float pressedAmount)
+        {
+            this.triggerType = triggerType;
+            this.pressed = pressed;
+            this.pressedAmount = pressedAmount;
+        }
+    }
+    
     [System.Serializable]
     public class TriggerableAction : MonoBehaviour
     {
-        public Action<TriggerType> onActivate;
+        public Action<TriggerData> onActivate;
     }
 
     public abstract class TriggeredAction : MonoBehaviour
