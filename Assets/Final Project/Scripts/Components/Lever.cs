@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.LEGO.Minifig;
 
 namespace Interactable
 {
@@ -56,10 +57,27 @@ namespace Interactable
             
             foreach (TriggerableAction trigger in triggeredActions)
             {
-                trigger.onActivate.Invoke(triggerType);
+                trigger.onActivate.Invoke(new TriggerData(triggerType, true, 1f));
             }
             
             animator.Play("LeverPullAnimation");
+            
+            var minifigController = FindObjectOfType<MinifigController>();
+ 
+            if (minifigController)
+            {
+                // Disable player input to the Minifig so that its animation won't be interrupted
+                minifigController.SetInputEnabled(false);
+
+                // Play the Minifig animation
+                minifigController.PlaySpecialAnimation(MinifigController.SpecialAnimation.Wave, null, EnableMinifigInput);
+
+                // Re-enable player input to the Minifig
+                void EnableMinifigInput(bool b)
+                {
+                    minifigController.SetInputEnabled(true);
+                }
+            }
             
             if (!oneTimeUse)
             {
