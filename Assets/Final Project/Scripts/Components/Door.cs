@@ -29,7 +29,7 @@ namespace Interactable
             originalRotation = transform.rotation.eulerAngles;
         }
         
-        void Triggered(Interactable.TriggerData td)
+        public void Triggered(Interactable.TriggerData td)
         {
             float percentComplete = doorOpenCurve.Evaluate(td.pressedAmount);
             

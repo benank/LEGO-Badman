@@ -54,11 +54,7 @@ namespace Interactable
         {
             if (triggered) {return;}
             triggered = true;
-            
-            foreach (TriggerableAction trigger in triggeredActions)
-            {
-                trigger.onActivate.Invoke(new TriggerData(triggerType, true, 1f));
-            }
+            OnActivated();
             
             animator.Play("LeverPullAnimation");
             
@@ -85,12 +81,21 @@ namespace Interactable
             }
         }
         
+        void OnActivated()
+        {
+            foreach (TriggerableAction trigger in triggeredActions)
+            {
+                trigger.onActivate.Invoke(new TriggerData(triggerType, triggered, triggered ? 1f : 0f));
+            }
+        }
+        
         IEnumerator ResetCoroutine()
         {
             yield return new WaitForSeconds(resetTime);
             animator.Play("LeverPullReverse");
             // TODO: QoL - wait for the animation to finish before allowing it to be triggered again
             triggered = false;
+            OnActivated();
         }
     }
 }
