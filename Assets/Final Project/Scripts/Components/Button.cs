@@ -12,7 +12,7 @@ namespace Interactable
         [Tooltip("Tags of GameObjects that are allowed to trigger the button")]
         [SerializeField] private List<string> triggerTags = new List<string>();
         
-        private TriggerType triggerType = TriggerType.Area;
+        private TriggerType triggerType = TriggerType.Continuous;
         
         private float pressedAmount = 0f;
         
