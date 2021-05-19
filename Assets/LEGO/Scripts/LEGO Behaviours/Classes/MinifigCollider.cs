@@ -36,6 +36,11 @@ namespace Unity.LEGO.Behaviours
         Vector3? m_PreviousBelowPosition;
 
         Dictionary<Collider, Vector3> m_PreviousSidePositions;
+        
+        List<string> m_IgnoreColliderTags = new List<string>()
+        {
+            "Projectile", "Player", "Interactable"
+        };
 
         void Start()
         {
@@ -49,6 +54,7 @@ namespace Unity.LEGO.Behaviours
 
         void Update()
         {
+            if (true) {return;}
             var centerWS = transform.TransformPoint(m_Center);
 
             // Check above and below.
@@ -60,8 +66,8 @@ namespace Unity.LEGO.Behaviours
 
             // Ignore players and projectiles.
             if (hitAbove && hitBelow
-                && !aboveHit.collider.CompareTag("Player") && !aboveHit.collider.CompareTag("Projectile")
-                && !belowHit.collider.CompareTag("Player") && !belowHit.collider.CompareTag("Projectile")
+                && !m_IgnoreColliderTags.Contains(aboveHit.collider.tag) 
+                && !m_IgnoreColliderTags.Contains(belowHit.collider.tag)
             )
             {
                 var currentAbovePosition = aboveHit.point;
@@ -95,7 +101,7 @@ namespace Unity.LEGO.Behaviours
             foreach (var collider in sideColliders)
             {
                 // Ignore players and projectiles.
-                if (!collider.CompareTag("Player") && !collider.CompareTag("Projectile"))
+                if (!m_IgnoreColliderTags.Contains(collider.tag))
                 {
                     var colliderType = collider.GetType();
                     if (colliderType == typeof(BoxCollider) || colliderType == typeof(SphereCollider) || colliderType == typeof(CapsuleCollider) || (colliderType == typeof(MeshCollider) && ((MeshCollider)collider).convex))
