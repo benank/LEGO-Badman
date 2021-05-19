@@ -16,6 +16,7 @@ namespace Combat
 
     public class CombatController : MonoBehaviour
     {
+        [SerializeField] private GameObject weapon;
         private float hitRate = 1.0f;
         private Animator animator;
         private MinifigController minifigController;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
+    [SerializeField] public float MaXHealth;
+
     // Start is called before the first frame update
     void Start()
     {
