@@ -23552,6 +23552,7 @@ MonoBehaviour:
   pressTime: 1
   triggerTags:
   - Player
+  - Pushable
 --- !u!1 &8042947532578253800
 GameObject:
   m_ObjectHideFlags: 0
