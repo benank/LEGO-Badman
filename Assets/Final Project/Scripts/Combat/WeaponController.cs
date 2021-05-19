@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    [SerializeField] public float hitRate;
+
     // Start is called before the first frame update
     void Start()
     {
