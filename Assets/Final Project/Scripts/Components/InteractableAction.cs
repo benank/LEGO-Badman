@@ -13,11 +13,8 @@ namespace Interactable
     /// </summary>
     public enum TriggerType
     {
-        Input, // Player presses a button when near the Component
-        Area, // Player enters a trigger area
-        Destruction, // Player destroys an object
-        Inventory // Player obtains X item(s) in inventory
-        // Potentially also include cases for killing enemies
+        Instant,
+        Continuous
     }
     
     public class TriggerData

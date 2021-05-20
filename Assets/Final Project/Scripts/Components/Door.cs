@@ -18,6 +18,8 @@ namespace Interactable
         private Vector3 originalPosition;
         private Vector3 originalRotation;
         
+        private float pressedAmount = 0f;
+        
         void Awake()
         {
             this.onActivate = delegate (Interactable.TriggerData td)
@@ -31,10 +33,34 @@ namespace Interactable
         
         public void Triggered(Interactable.TriggerData td)
         {
-            float percentComplete = doorOpenCurve.Evaluate(td.pressedAmount);
+            if (td.triggerType == Interactable.TriggerType.Instant)
+            {
+                StartCoroutine(LerpToPressedAmount(td.pressedAmount));
+            }
+            else
+            {
+                pressedAmount = td.pressedAmount;
+                UpdateDoor();
+            }
+        }
+        
+        void UpdateDoor()
+        {
+            float percentComplete = doorOpenCurve.Evaluate(pressedAmount);
             
             this.transform.position = originalPosition + percentComplete * doorOpenOffset;
             this.transform.rotation = Quaternion.Euler(originalRotation + percentComplete * doorOpenRotation);
+        }
+        
+        IEnumerator LerpToPressedAmount(float td_pressedAmount)
+        {
+            while (pressedAmount != td_pressedAmount)
+            {
+                pressedAmount += pressedAmount < td_pressedAmount ? Time.deltaTime : -Time.deltaTime;
+                pressedAmount = Mathf.Clamp(pressedAmount, 0, 1);
+                UpdateDoor();
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
 

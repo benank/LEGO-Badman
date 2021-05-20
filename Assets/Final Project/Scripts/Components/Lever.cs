@@ -17,7 +17,7 @@ namespace Interactable
         [Range(1, 20)]
         [SerializeField] private float resetTime = 2f;
         
-        private TriggerType triggerType = TriggerType.Input;
+        private TriggerType triggerType = TriggerType.Instant;
         
         private Animator animator;
         private bool triggered = false;
