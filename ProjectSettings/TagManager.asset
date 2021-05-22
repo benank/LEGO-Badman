@@ -7,15 +7,8 @@ TagManager:
   - Projectile
   - TutorialRequirement
   - Interactable
-<<<<<<< HEAD
-<<<<<<< HEAD
+  - Weapon
   - Pushable
-=======
-  - Weapon
->>>>>>> 9e52ed3 (added weapon tag)
-=======
-  - Weapon
->>>>>>> 83435116b26f9ff527a9f6c5112693fa9a924d34
   layers:
   - Default
   - TransparentFX
