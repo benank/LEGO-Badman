@@ -8,6 +8,7 @@ TagManager:
   - TutorialRequirement
   - Interactable
   - Pushable
+  - Selectable
   layers:
   - Default
   - TransparentFX
