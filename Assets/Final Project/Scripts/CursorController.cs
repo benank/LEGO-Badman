@@ -48,7 +48,15 @@ public class CursorController : MonoBehaviour
                     var eventController = selection.GetComponent<EventController>();
                     if (eventController != null)
                     {
-                        eventController.TriggerEvent();
+                        eventController.TriggerEvent1();
+                    }
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    var eventController = selection.GetComponent<EventController>();
+                    if (eventController != null)
+                    {
+                        eventController.TriggerEvent2();
                     }
                 }
             }

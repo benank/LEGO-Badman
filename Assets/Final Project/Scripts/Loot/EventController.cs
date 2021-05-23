@@ -5,11 +5,17 @@ using UnityEngine;
 public class EventController : MonoBehaviour
 {
     public delegate void EventDelegate();
-    public EventDelegate EventMethod;
-    public void TriggerEvent()
+    public EventDelegate Event1;
+    public EventDelegate Event2;
+    public void TriggerEvent1()
     {
-        EventMethod();
-        return;
+        // On Left Click
+        Event1();
     }
-   
+    public void TriggerEvent2()
+    {
+        // On Right Click
+        Event2();
+    }
+
 }
