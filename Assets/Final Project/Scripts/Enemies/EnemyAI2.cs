@@ -10,7 +10,7 @@ namespace Unity.LEGO.Minifig
         public float chasedistance;
         public float attackdistance;
         private Transform player;
-        // private Animation attack;
+        private Animator animator;
         private MinifigController minifig;
 
         public Transform[] points;
@@ -18,19 +18,15 @@ namespace Unity.LEGO.Minifig
 
         void Awake()
         {
+            // Get information about enemy and player.
             player = GameObject.FindWithTag("Player").transform;
-            // attack = gameObject.GetComponent<Animation>();
+            animator = GetComponent<Animator>();
             minifig = GetComponent<Unity.LEGO.Minifig.MinifigController>();
         }
 
         void Update()
         {
             float dist = Vector3.Distance(minifig.transform.position, player.position);
-
-            // if (attack.isPlaying)
-            // {
-            //     return;
-            // }
             if (dist <= chasedistance && dist > attackdistance)
             {
                 // If player is within chase distance, enemy will chase player.
@@ -52,6 +48,8 @@ namespace Unity.LEGO.Minifig
         private void Patrol()
         {
             // Move the Minifig and update position index.
+             minifig.SpecialAnimationFinished();
+            minifig.StopFollowing();
             minifig.MoveTo(points[current].position);
             current = (current + 1) % points.Length;
         }
@@ -59,6 +57,7 @@ namespace Unity.LEGO.Minifig
         private void ChasePlayer()
         {
             // Enemy will follow the player until enemy reaches attack distance.
+            minifig.SpecialAnimationFinished();
             minifig.Follow(player);
         }
 
@@ -67,7 +66,7 @@ namespace Unity.LEGO.Minifig
             // Enemy will stop following the player, will stop moving and attack.
             minifig.StopFollowing();
             minifig.ClearMoves();
-            Debug.Log("attack");
+            minifig.PlaySpecialAnimation(0);
         }
     }
 }
