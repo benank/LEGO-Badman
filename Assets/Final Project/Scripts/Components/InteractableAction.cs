@@ -22,12 +22,14 @@ namespace Interactable
         public TriggerType triggerType;
         public bool pressed;
         public float pressedAmount;
+        public GameObject triggerGameObject;
         
-        public TriggerData(TriggerType triggerType, bool pressed, float pressedAmount)
+        public TriggerData(TriggerType triggerType, bool pressed, float pressedAmount, GameObject triggerGameObject)
         {
             this.triggerType = triggerType;
             this.pressed = pressed;
             this.pressedAmount = pressedAmount;
+            this.triggerGameObject = triggerGameObject;
         }
     }
     

@@ -85,7 +85,7 @@ namespace Interactable
         {
             foreach (TriggerableAction trigger in triggeredActions)
             {
-                trigger.onActivate.Invoke(new TriggerData(triggerType, triggered, triggered ? 1f : 0f));
+                trigger.onActivate.Invoke(new TriggerData(triggerType, triggered, triggered ? 1f : 0f, gameObject));
             }
         }
         
