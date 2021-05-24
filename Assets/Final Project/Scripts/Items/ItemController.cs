@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] List<int> ItemsHeld;
+    [SerializeField] private List<int> ItemsHeld;
+    [SerializeField] public GameObject Target = null;
 
-    // Update Text
+    // Update Test Area Text
     [SerializeField] TMPro.TextMeshProUGUI inventoryNumber;
 
     private void Awake()
     {
-        this.gameObject.GetComponent<EventController>().Event1 = CreateRandomItemTable;
-        this.gameObject.GetComponent<EventController>().Event2 = DropItems;
+        if (this.GetComponent<EventController>() != null)
+        {
+            this.gameObject.GetComponent<EventController>().Event1 = CreateRandomItemTable;
+            this.gameObject.GetComponent<EventController>().Event2 = DropItems;
+        }
     }
     private void Update()
     {
-        this.gameObject.GetComponent<EventController>().Event2 = DropItems;
-        inventoryNumber.text = ItemsHeld.Count.ToString();
-
+        inventoryNumber.text = ItemsHeld.Count.ToString(); 
     }
     /*
      * Creates a List of Items to attach to object.
      */
     public void CreateRandomItemTable()
     {
-        Debug.Log("Creating Random Set of Items!");
-
         string log = "Items Chosen : ";
         int numItems = Random.Range(1, 10);
         List<int> itemIndices = new List<int>(numItems);
@@ -41,16 +41,27 @@ public class ItemController : MonoBehaviour
         ItemsHeld = itemIndices;
         Debug.Log(log);
     }
+    /*
+     * Instantiate all items with attached behaviour script 
+     */
     public void DropItems()
     {
-        Debug.Log("Dropping Items!");
-
         var prefabList = ItemTypes.instance.ObjectTypes;
         foreach (var itemIndex in ItemsHeld)
         {
             GameObject instance = Instantiate(prefabList[itemIndex]) as GameObject;
+            var itemBehaviour = instance.AddComponent<ItemBehaviour>();
+            itemBehaviour.ItemIndex = itemIndex;
+            itemBehaviour.Target = Target;
+
             instance.transform.SetPositionAndRotation(this.gameObject.transform.position, this.gameObject.transform.rotation);
         }
         ItemsHeld.Clear();
     }
+
+    public void CollectItem(int itemIndex)
+    {
+        ItemsHeld.Add(itemIndex);
+    }
+
 }
