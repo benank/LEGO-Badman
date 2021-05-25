@@ -16,6 +16,8 @@ namespace Unity.LEGO.Minifig
         public Transform[] points;
         int current;
 
+        private int health = 3;
+
         void Awake()
         {
             // Get information about enemy and player.
@@ -26,6 +28,19 @@ namespace Unity.LEGO.Minifig
 
         void Update()
         {
+
+            // If the enemies health is at zero, it dies.
+            if (health <= 0)
+            {
+                Debug.Log("Enemy died");
+                minifig.SpecialAnimationFinished();
+                minifig.StopFollowing();
+                minifig.ClearMoves();
+                animator.enabled = false;
+                // minifig.Explode();
+                return;
+            }
+
             float dist = Vector3.Distance(minifig.transform.position, player.position);
             if (dist <= chasedistance && dist > attackdistance)
             {
@@ -48,7 +63,7 @@ namespace Unity.LEGO.Minifig
         private void Patrol()
         {
             // Move the Minifig and update position index.
-             minifig.SpecialAnimationFinished();
+            minifig.SpecialAnimationFinished();
             minifig.StopFollowing();
             minifig.MoveTo(points[current].position);
             current = (current + 1) % points.Length;
@@ -67,6 +82,15 @@ namespace Unity.LEGO.Minifig
             minifig.StopFollowing();
             minifig.ClearMoves();
             minifig.PlaySpecialAnimation(0);
+        }
+
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Player" && health > 0);
+            {
+                Debug.Log("Triggered by Player");
+                health = health - 1;
+            }
         }
     }
 }
