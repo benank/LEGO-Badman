@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 namespace Unity.LEGO.Minifig
@@ -9,14 +10,15 @@ namespace Unity.LEGO.Minifig
     {
         public float chasedistance;
         public float attackdistance;
+        public Slider healthbar;
+        public bool hidehealthbar;
         private Transform player;
         private Animator animator;
         private MinifigController minifig;
-
         public Transform[] points;
-        int current;
-
-        private int health = 3;
+        private int current;
+        private float maxhealth = 3;
+        private float health = 3;
 
         void Awake()
         {
@@ -24,10 +26,21 @@ namespace Unity.LEGO.Minifig
             player = GameObject.FindWithTag("Player").transform;
             animator = GetComponent<Animator>();
             minifig = GetComponent<Unity.LEGO.Minifig.MinifigController>();
+
+            if (hidehealthbar)
+            {
+                healthbar.gameObject.SetActive(false);
+            }
+            else
+            {
+                healthbar.value = health / maxhealth;
+            }
         }
 
         void Update()
         {
+            // Update healthbar.
+            healthbar.value = health / maxhealth;
 
             // If the enemies health is at zero, it dies.
             if (health <= 0)
@@ -37,6 +50,7 @@ namespace Unity.LEGO.Minifig
                 minifig.StopFollowing();
                 minifig.ClearMoves();
                 animator.enabled = false;
+                Destroy(gameObject);
                 // minifig.Explode();
                 return;
             }
