@@ -290,10 +290,14 @@ GameObject:
   - component: {fileID: 6184614066908857398}
   m_Layer: 5
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: Healthbar
 =======
   m_Name: Canvas
 >>>>>>> 47ec2a1... Destroy enemy on death, added healthbar functionality and prefab
+=======
+  m_Name: Healthbar
+>>>>>>> 42c3c51... Added all controllers to enemy prefabs except AI, EnemyTest has all 5 enemies with healthbars and AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,10 +311,14 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6184614066908857392}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
 =======
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
 >>>>>>> 47ec2a1... Destroy enemy on death, added healthbar functionality and prefab
+=======
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+>>>>>>> 42c3c51... Added all controllers to enemy prefabs except AI, EnemyTest has all 5 enemies with healthbars and AI
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
