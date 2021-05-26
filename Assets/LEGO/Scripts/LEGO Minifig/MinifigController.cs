@@ -213,7 +213,6 @@ namespace Unity.LEGO.Minifig
         int playSpecialHash = Animator.StringToHash("Play Special");
         int cancelSpecialHash = Animator.StringToHash("Cancel Special");
         int specialIdHash = Animator.StringToHash("Special Id");
-        int badman = Animator.StringToHash("Badman");
 
         Action<bool> onSpecialComplete;
 
@@ -234,20 +233,10 @@ namespace Unity.LEGO.Minifig
 
             // Make sure the Character Controller is grounded if starting on the ground.
             controller.Move(Vector3.down * 0.01f);
-
-            if (gameObject.tag == "Player")
-            {
-                animator.SetBool(badman, true);
-            }
-            else
-            {
-                animator.SetBool(badman, false);
-            }
         }
 
         void Update()
         {
-            // SpecialAnimationFinished();
             if (exploded)
             {
                 return;
@@ -358,12 +347,6 @@ namespace Unity.LEGO.Minifig
                 if (!airborne)
                 {
                     jumpsInAir = maxJumpsInAir;
-                }
-
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    PlaySpecialAnimation(0);
-                    StopSpecialAnimation();
                 }
 
                 // Check if player is jumping.
