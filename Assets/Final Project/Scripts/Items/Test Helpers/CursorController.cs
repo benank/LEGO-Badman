@@ -32,18 +32,23 @@ public class CursorController : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             var selection = hit.transform;
+            //Debug.Log(selection.name);
+
             if (selection.CompareTag(selectableTag))
             {
+
+                // Highlight object if tagged Selectable (Mainly for Testing)
                 var selectionRenderer = selection.GetComponent<Renderer>();
                 if (selectionRenderer != null)
                 {
                     defaultMaterial = selectionRenderer.material;
                     selectionRenderer.material = highlightMaterial;
                 }
-
                 _selection = selection;
 
-                if (Input.GetMouseButtonDown(0))
+            }
+            // Check for mouse clicks to trigger any event.
+            if (Input.GetMouseButtonDown(0))
                 {
                     var eventController = selection.GetComponent<EventController>();
                     if (eventController != null)
@@ -59,7 +64,6 @@ public class CursorController : MonoBehaviour
                         eventController.TriggerEvent2();
                     }
                 }
-            }
 
         }
     }

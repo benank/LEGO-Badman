@@ -10,6 +10,7 @@ TagManager:
   - Pushable
   - Selectable
   - Collector
+  - Loot Spawn Point
   layers:
   - Default
   - TransparentFX

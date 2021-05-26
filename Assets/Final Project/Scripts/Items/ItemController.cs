@@ -4,30 +4,29 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] private List<int> ItemsHeld;
-    [SerializeField] public GameObject Target = null;
+    [SerializeField] private List<int> ItemsHeld = new List<int>();
+    [SerializeField] private Transform ItemDropSpawnPoint;
+    [SerializeField] private string ItemSpawnPointTag = "Loot Spawn Point";
 
-    // Update Test Area Text
-    [SerializeField] TMPro.TextMeshProUGUI inventoryNumber;
-
-    private void Awake()
+    private void Start()
     {
-        if (this.GetComponent<EventController>() != null)
+        var transformChildren = this.gameObject.GetComponentsInChildren<Transform>();
+        foreach (var child in transformChildren)
         {
-            this.gameObject.GetComponent<EventController>().Event1 = CreateRandomItemTable;
-            this.gameObject.GetComponent<EventController>().Event2 = DropItems;
+            if(child.gameObject.CompareTag(ItemSpawnPointTag)){
+                ItemDropSpawnPoint = child;
+                break;
+            }
         }
     }
-    private void Update()
-    {
-        inventoryNumber.text = ItemsHeld.Count.ToString(); 
-    }
+
     /*
      * Creates a List of Items to attach to object.
      */
     public void CreateRandomItemTable()
     {
         string log = "Items Chosen : ";
+
         int numItems = Random.Range(1, 10);
         List<int> itemIndices = new List<int>(numItems);
         int numItemTypes = ItemTypes.instance.Count;
@@ -52,9 +51,8 @@ public class ItemController : MonoBehaviour
             GameObject instance = Instantiate(prefabList[itemIndex]) as GameObject;
             var itemBehaviour = instance.AddComponent<ItemBehaviour>();
             itemBehaviour.ItemIndex = itemIndex;
-            itemBehaviour.Target = Target;
 
-            instance.transform.SetPositionAndRotation(this.gameObject.transform.position, this.gameObject.transform.rotation);
+            instance.transform.SetPositionAndRotation(ItemDropSpawnPoint.position, ItemDropSpawnPoint.rotation);
         }
         ItemsHeld.Clear();
     }
@@ -63,5 +61,33 @@ public class ItemController : MonoBehaviour
     {
         ItemsHeld.Add(itemIndex);
     }
+    public string ItemsToString()
+    {
+        string text = "";
+        for(int i = 0; i < ItemTypes.instance.Count; ++i)
+        {
+            var subCount = GetCountOfItemType(i);
+            if (subCount > 0)
+            {
+                text += ItemTypes.instance.ObjectTypes[i].name;
+                text += ": ";
+                text += subCount;
+                text += "  ";
+            }
+        }
 
+        return text;
+    }
+    public int GetCountOfItemType(int itemIndex)
+    {
+        int count = 0;
+        foreach (var item in ItemsHeld)
+        {
+            if(item == itemIndex)
+            {
+                ++count;
+            }
+        }
+        return count;
+    }
 }

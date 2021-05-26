@@ -19,10 +19,14 @@ public class ItemBehaviour : MonoBehaviour
     [SerializeField] float DetectionRadius = 15f;
 
 
-    [SerializeField] public GameObject Target = null;
+    [SerializeField] private GameObject TargetCollector;
+    [SerializeField] private GameObject TargetInventory;
 
     void Start()
     {
+        TargetCollector = PlayerSetup.instance.ItemCollector;
+        TargetInventory = PlayerSetup.instance.Player;
+
         RandomizeTimes();
         StartCoroutine(StartBehaviour());
         StartCoroutine(DetectProximity());
@@ -31,7 +35,7 @@ public class ItemBehaviour : MonoBehaviour
     private void RandomizeTimes()
     {
         TimeToSpawn = Random.Range(0.5f, 1.5f);
-        TimeToHover = Random.Range(3f, 5f);
+        TimeToHover = Random.Range(4f, 6f);
         TimeToFlySmooth = Random.Range(0.3f, 0.5f);
     }
 
@@ -40,7 +44,7 @@ public class ItemBehaviour : MonoBehaviour
         /* Continually Check if Item is close enough to collector to be picked up automatically */
         while (true)
         {
-            if (Target == null)
+            if (TargetCollector == null)
             {
                 Debug.Log("No Target Attached, No check proximity.");
                 break;
@@ -97,7 +101,7 @@ public class ItemBehaviour : MonoBehaviour
 
         while (true)
         {
-            if (Target == null)
+            if (TargetCollector == null)
             {
                 Debug.Log("No Target Attached, will Despawn.");
                 Destroy(this.gameObject);
@@ -106,13 +110,13 @@ public class ItemBehaviour : MonoBehaviour
             // Set Position
             var newPosition = Vector3.SmoothDamp(
                 this.gameObject.transform.position,
-                Target.transform.position,
+                TargetCollector.transform.position,
                 ref CurrentVelocity,
                 TimeToFlySmooth
                 );
             this.gameObject.transform.position = newPosition;
             // Set Rotation
-            var direction = (Target.transform.position - this.gameObject.transform.position).normalized;
+            var direction = (TargetCollector.transform.position - this.gameObject.transform.position).normalized;
             var lookTo = Quaternion.LookRotation(direction);
             var newRotation = Quaternion.RotateTowards(this.gameObject.transform.rotation, lookTo, timePassed * RotateSpeed);
             timePassed += Time.deltaTime;
@@ -135,7 +139,7 @@ public class ItemBehaviour : MonoBehaviour
             Debug.Log("Invalid Item Index, Not marked on Instantiate.");
             return;
         }
-        var targetInventory = Target.GetComponentInParent<ItemController>();
+        var targetInventory = TargetInventory.GetComponent<ItemController>();
         targetInventory.CollectItem(ItemIndex);
         Destroy(this.gameObject);
     }
@@ -143,7 +147,7 @@ public class ItemBehaviour : MonoBehaviour
     private float GetDistanceToTarget()
     {
         var currentPosition = this.gameObject.transform.position;
-        var targetPosition = Target.transform.position;
+        var targetPosition = TargetCollector.transform.position;
 
         return Vector3.Distance(currentPosition, targetPosition);
 
