@@ -31,4 +31,25 @@ public class GoldBrick : MonoBehaviour
         rotation.eulerAngles = new Vector3(0, Time.time * rotationSpeed, 0);
         transform.rotation = originalRotation * rotation;
     }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Player got gold brick");
+            
+            // Trigger game win event
+            Unity.LEGO.Game.Events.GameOverEvent.Win = true;
+            Unity.LEGO.Game.EventManager.Broadcast(Unity.LEGO.Game.Events.GameOverEvent);
+            
+            // To subscribe to events, use the following code:
+            /*
+                Unity.LEGO.Game.EventManager.AddListener<GameOverEvent>(OnGameOver);
+                ...
+                void OnGameOver(GameOverEvent evt) {}
+            */
+            
+            Destroy(this);
+        }
+    }
 }
