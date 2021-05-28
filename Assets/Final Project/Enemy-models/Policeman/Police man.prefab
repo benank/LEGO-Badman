@@ -4830,7 +4830,10 @@ Transform:
   m_Children:
   - {fileID: 1897349936708901564}
   - {fileID: 6969170590959233315}
+<<<<<<< HEAD
   - {fileID: 1847121137838087282}
+=======
+>>>>>>> 42c3c51927be83c4dd4a5875c9ee7a2d03a3c59e
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -6268,6 +6268,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2476647529678139945}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:Assets/Final Project/Prefabs/Badman/Badman.prefab
 --- !u!1001 &7145754391206689931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6363,3 +6364,5 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7145754391206689931}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> 42c3c51927be83c4dd4a5875c9ee7a2d03a3c59e:Assets/Final Project/Prefabs/Badman.prefab
