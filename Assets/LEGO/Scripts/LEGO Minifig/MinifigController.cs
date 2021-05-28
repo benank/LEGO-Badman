@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace Unity.LEGO.Minifig
 
     public class MinifigController : MonoBehaviour
     {
+        [SerializeField] private float respawnTime = 2f;
+        
         // Constants.
         const float stickyTime = 0.05f;
         const float stickyForce = 9.6f;
@@ -159,15 +162,15 @@ namespace Unity.LEGO.Minifig
             Wave = 49
         }
 
-        [SerializeField, HideInInspector]
+        [SerializeField]
         Transform leftArmTip = null;
-        [SerializeField, HideInInspector]
+        [SerializeField]
         Transform rightArmTip = null;
-        [SerializeField, HideInInspector]
+        [SerializeField]
         Transform leftLegTip = null;
-        [SerializeField, HideInInspector]
+        [SerializeField]
         Transform rightLegTip = null;
-        [SerializeField, HideInInspector]
+        [SerializeField]
         Transform head = null;
 
         Minifig minifig;
@@ -690,6 +693,7 @@ namespace Unity.LEGO.Minifig
                 exploded = true;
                 animator.enabled = false;
                 controller.enabled = false;
+                
 
                 var transferredSpeed = Vector3.Scale(moveDelta + externalMotion, new Vector3(horizontalVelocityTransferRatio, verticalVelocityTransferRatio, horizontalVelocityTransferRatio));
                 var transferredAngularSpeed = (rotateSpeed + externalRotation) * angularVelocityTransferRatio;
@@ -699,8 +703,34 @@ namespace Unity.LEGO.Minifig
                     audioSource.PlayOneShot(explodeAudioClip);
                 }
 
-                MinifigExploder.Explode(minifig, leftArmTip, rightArmTip, leftLegTip, rightLegTip, head, transferredSpeed, transferredAngularSpeed);
+                Unity.LEGO.Game.EventManager.Broadcast(new Unity.LEGO.Game.DeathEvent(this.gameObject));
+                ToggleVisible(false);
+                
+                // Disable the exploder for now because it doesn't work with our new setup
+                // MinifigExploder.Explode(minifig, leftArmTip, rightArmTip, leftLegTip, rightLegTip, head, transferredSpeed, transferredAngularSpeed);
             }
+        }
+        
+        void ToggleVisible(bool visible)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Transform child = transform.GetChild(i);
+                child.gameObject.SetActive(visible);
+            }
+        }
+        
+        /// <summary>
+        /// Respawns the Minifig after calling Explode().
+        /// </summary>
+        public void Respawn(Vector3 position)
+        {
+            TeleportTo(position);
+            ToggleVisible(true);
+            
+            exploded = false;
+            animator.enabled = true;
+            controller.enabled = true;
         }
 
         public void MoveTo(Vector3 destination, float minDistance = 0.0f, Action onComplete = null, float onCompleteDelay = 0.0f,
