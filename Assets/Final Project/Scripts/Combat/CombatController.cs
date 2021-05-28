@@ -18,7 +18,9 @@ namespace Combat
     {
         [SerializeField] private GameObject weapon;
         private Animator animator;
-        [SerializeField] private AudioClip weaponSound;
+        [SerializeField] private AudioClip LungeSound;
+        [SerializeField] private AudioClip SwingSound;
+        [SerializeField] private AudioClip ReverseSwingSound;
         private AudioSource audioSource;
         private float meleeCooldown = 0;
         private float currentAttackDuration = 0;
@@ -71,17 +73,17 @@ namespace Combat
                 {
                     case MeleeTypes.SwordLunge:
                         animator.Play("SwordLungeAnimation");
-                        audioSource.PlayOneShot(weaponSound);
+                        audioSource.PlayOneShot(LungeSound);
                         currentAttackDuration = swordLungeDuration;
                         break;
                     case MeleeTypes.SwordReverseWideSwing:
                         animator.Play("OneHandedReverseSwordSwingAnimation");
-                        audioSource.PlayOneShot(weaponSound);
+                        audioSource.PlayOneShot(ReverseSwingSound);
                         currentAttackDuration = swordReverseSwipeDuration;
                         break;
                     case MeleeTypes.SwordWideSwing:
                         animator.Play("OneHandedSwordSwingAnimation");
-                        audioSource.PlayOneShot(weaponSound);
+                        audioSource.PlayOneShot(SwingSound);
                         currentAttackDuration = swordSwipeDuration;
                         break;
                 }
