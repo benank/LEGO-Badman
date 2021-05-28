@@ -16,7 +16,6 @@ namespace Combat
 
     public class CombatController : MonoBehaviour
     {
-        [SerializeField] private GameObject weapon;
         private Animator animator;
         [SerializeField] private AudioClip LungeSound;
         [SerializeField] private AudioClip SwingSound;
