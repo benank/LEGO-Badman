@@ -12,6 +12,8 @@ public class Destructible : MonoBehaviour
     /// <param name="damage"></param>
     public void Damage(float damage)
     {
+        if (health == 0) {return;}
+        
         health = Mathf.Max(0, health - damage);
         
         if (health == 0)
