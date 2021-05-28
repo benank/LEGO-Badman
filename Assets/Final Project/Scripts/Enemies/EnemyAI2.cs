@@ -19,6 +19,7 @@ namespace Unity.LEGO.Minifig
         private int current;
         private float maxhealth = 3;
         private float health = 3;
+        private bool dead;
 
         void Awake()
         {
@@ -35,6 +36,9 @@ namespace Unity.LEGO.Minifig
             {
                 healthbar.value = health / maxhealth;
             }
+
+            // Make enemy alive.
+            dead = false;
         }
 
         void Update()
@@ -42,38 +46,43 @@ namespace Unity.LEGO.Minifig
             // Update healthbar.
             healthbar.value = health / maxhealth;
 
-            // If the enemies health is at zero, it dies.
-            if (health <= 0)
+            // If the enemies health is at zero, play animation, wait and destroy.
+            if (health <= 0 && dead == false)
             {
-                Debug.Log("Enemy died");
-                minifig.SpecialAnimationFinished();
-                minifig.StopFollowing();
-                minifig.ClearMoves();
-                animator.enabled = false;
-                Destroy(gameObject);
-                // minifig.Explode();
-                return;
+                animator.Play("Sleeping");
+                dead = true;
+                StartCoroutine(Wait());
             }
 
-            float dist = Vector3.Distance(minifig.transform.position, player.position);
-            if (dist <= chasedistance && dist > attackdistance)
+            // If enemy is dead, do not do any actions.
+            if (dead == false)
             {
-                // If player is within chase distance, enemy will chase player.
-                ChasePlayer();
-            }
-            else if (dist <= attackdistance)
-            {
-                // If player is within attack distance, enemy will attack player.
-                AttackPlayer();
-            }
-            else
-            {
-                // Otherwise, patrol.
-                Patrol();
+                float dist = Vector3.Distance(minifig.transform.position, player.position);
+                if (dist <= chasedistance && dist > attackdistance)
+                {
+                    // If player is within chase distance, enemy will chase player.
+                    ChasePlayer();
+                }
+                else if (dist <= attackdistance)
+                {
+                    // If player is within attack distance, enemy will attack player.
+                    AttackPlayer();
+                }
+                else
+                {
+                    // Otherwise, patrol.
+                    Patrol();
+                }
             }
             
         }
 
+        IEnumerator Wait()
+        {
+            // Wait for 2 seconds for death animation to play, then destroy.
+            yield return new WaitForSeconds(2f);
+            Destroy(gameObject);
+        }
         private void Patrol()
         {
             // Move the Minifig and update position index.
@@ -102,7 +111,7 @@ namespace Unity.LEGO.Minifig
         {
             if (other.tag == "Player" && health > 0);
             {
-                Debug.Log("Triggered by Player");
+                // Player collider trigger, decrease health.
                 health = health - 1;
             }
         }
