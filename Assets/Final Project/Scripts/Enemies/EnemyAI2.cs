@@ -111,11 +111,7 @@ namespace Unity.LEGO.Minifig
         {
             if (other.tag == "Player" && health > 0);
             {
-<<<<<<< HEAD
                 // Player collider trigger, decrease health.
-=======
-                Debug.Log("Triggered by Player");
->>>>>>> 42c3c51927be83c4dd4a5875c9ee7a2d03a3c59e
                 health = health - 1;
             }
         }
