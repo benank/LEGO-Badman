@@ -21,8 +21,6 @@ namespace Unity.LEGO.Minifig
         private float health = 3;
         private bool dead;
 
-        private int health = 3;
-
         void Awake()
         {
             // Get information about enemy and player.
