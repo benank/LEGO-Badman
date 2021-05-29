@@ -742,9 +742,10 @@ GameObject:
   - component: {fileID: 7719813149010854989}
   - component: {fileID: 7719813149010854988}
   - component: {fileID: 7719813149010854979}
+  - component: {fileID: 4089840905800042891}
   m_Layer: 0
   m_Name: dagger
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -839,6 +840,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onlyActiveGameObject: 0
   hideChildren: 0
+--- !u!114 &4089840905800042891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7719813149010854977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367465ff1093c2f4b9723fdd14f86cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 40
+  hitRate: 1.5
 --- !u!1 &7719813149104957506
 GameObject:
   m_ObjectHideFlags: 0
