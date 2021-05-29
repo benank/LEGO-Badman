@@ -9,6 +9,10 @@ TagManager:
   - Interactable
   - Weapon
   - Pushable
+  - Selectable
+  - Collector
+  - Loot Spawn Point
+  - Lootable
   - Weapon
   layers:
   - Default

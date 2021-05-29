@@ -21,8 +21,15 @@ namespace Interactable
         protected Transform teleportLocation;
         
         private List<GameObject> recentTeleports = new List<GameObject>();
-        
+
         // Start is called before the first frame update
+        private void Awake()
+        {
+            this.onActivate = delegate (Interactable.TriggerData td)
+            {
+                Triggered(td);
+            };
+        }
         void Start()
         {
             if (linkedTeleporter == null)
@@ -74,6 +81,13 @@ namespace Interactable
             go.SetActive(true);
             yield return new WaitForSeconds(0.25f);
             linkedTeleporter.RemoveRecentlyTeleportedGameObject(go);
+        }
+        public void Triggered(TriggerData td)
+        {
+            if (td.pressed)
+            {
+                isActive = !isActive;
+            }
         }
     }
 }
