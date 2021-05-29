@@ -15,8 +15,8 @@ public class ItemBehaviour : MonoBehaviour
     [SerializeField] float BobbingIntensity = 0.005f;
     [SerializeField] float BobbingFrequency = 3f;
 
-    [SerializeField] float CollectionRadius = 5f;
-    [SerializeField] float DetectionRadius = 15f;
+    [SerializeField] float CollectionRadius = 2f;
+    [SerializeField] float DetectionRadius = 5f;
 
 
     [SerializeField] private GameObject TargetCollector;
