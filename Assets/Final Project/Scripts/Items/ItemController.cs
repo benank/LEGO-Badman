@@ -25,20 +25,13 @@ public class ItemController : MonoBehaviour
      */
     public void CreateRandomItemTable()
     {
-        string log = "Items Chosen : ";
-
-        int numItems = Random.Range(1, 10);
-        List<int> itemIndices = new List<int>(numItems);
+        int numItems = Random.Range(1, 5);
         int numItemTypes = ItemTypes.instance.Count;
 
         for (int i = 0; i < numItems; ++i)
         {
-            itemIndices.Add(Random.Range(0, numItemTypes - 1));
-            log += itemIndices[i].ToString() + ", ";
-
+            ItemsHeld.Add(Random.Range(0, numItemTypes - 1));
         }
-        ItemsHeld = itemIndices;
-        Debug.Log(log);
     }
     /*
      * Instantiate all items with attached behaviour script 
@@ -89,5 +82,13 @@ public class ItemController : MonoBehaviour
             }
         }
         return count;
+    }
+    public List<int> GetInventory()
+    {
+        return ItemsHeld;
+    }
+    public void SetInventory(List<int> items)
+    {
+        ItemsHeld = items;
     }
 }

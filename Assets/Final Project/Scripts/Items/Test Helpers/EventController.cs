@@ -10,12 +10,12 @@ public class EventController : MonoBehaviour
     public void TriggerEvent1()
     {
         // On Left Click
-        Event1();
+        Event1?.Invoke();
     }
     public void TriggerEvent2()
     {
         // On Right Click
-        Event2();
+        Event2?.Invoke();
     }
 
 }

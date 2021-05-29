@@ -11,6 +11,7 @@ TagManager:
   - Selectable
   - Collector
   - Loot Spawn Point
+  - Lootable
   layers:
   - Default
   - TransparentFX

@@ -24,6 +24,10 @@ public class PlayerSetup : MonoBehaviour
         {
             Player.AddComponent<ItemController>();
         }
+        if (Player.GetComponent<BlueprintController>() == null)
+        {
+            Player.AddComponent<BlueprintController>();
+        }
 
     }
 
