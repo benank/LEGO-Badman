@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Unity.LEGO.Game
 {
     // The Game Events used across the Game.
@@ -27,6 +29,16 @@ namespace Unity.LEGO.Game
     public class VariableAdded : GameEvent
     {
         public Variable Variable;
+    }
+
+    public class DeathEvent : GameEvent
+    {
+        public GameObject player;
+        
+        public DeathEvent(GameObject player)
+        {
+            this.player = player;
+        }
     }
 
     public class GameOverEvent : GameEvent
