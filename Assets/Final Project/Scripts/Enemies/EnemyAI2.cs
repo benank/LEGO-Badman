@@ -17,8 +17,8 @@ namespace Unity.LEGO.Minifig
         private MinifigController minifig;
         public Transform[] points;
         private int current;
-        private float maxhealth = 3;
-        private float health = 3;
+        private float maxhealth = 10;
+        private float health = 10;
         private bool dead;
 
         private float meleeCooldown = 0;
