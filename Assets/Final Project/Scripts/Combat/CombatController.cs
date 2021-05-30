@@ -20,6 +20,8 @@ namespace Combat
         [SerializeField] private AudioClip LungeSound;
         [SerializeField] private AudioClip SwingSound;
         [SerializeField] private AudioClip ReverseSwingSound;
+        [SerializeField] private GameObject Weapon;
+        private CapsuleCollider weaponCollider;
         private AudioSource audioSource;
         private float meleeCooldown = 0;
         private float currentAttackDuration = 0;
@@ -33,6 +35,7 @@ namespace Combat
         {
             animator = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
+            weaponCollider = Weapon.GetComponent<CapsuleCollider>();
             AnimationClip[] clips =  animator.runtimeAnimatorController.animationClips;
             foreach (AnimationClip clip in clips)
             {
@@ -61,6 +64,10 @@ namespace Combat
                 meleeCooldown += Time.deltaTime;
                 return;
             }
+            else
+            {
+                weaponCollider.enabled = false;
+            }
                 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
@@ -68,6 +75,7 @@ namespace Combat
                 int random = UnityEngine.Random.Range(0, values.Length);
                 MeleeTypes melee = (MeleeTypes)values.GetValue(random);
                 meleeCooldown = 0;
+                weaponCollider.enabled = true;
                 switch (melee)
                 {
                     case MeleeTypes.SwordLunge:
