@@ -5850,6 +5850,7 @@ GameObject:
   - component: {fileID: 4644770528214116874}
   - component: {fileID: 5160521756817120712}
   - component: {fileID: 6235950900082838316}
+  - component: {fileID: 6042469786885949400}
   m_Layer: 0
   m_Name: SecurityGuard
   m_TagString: Untagged
@@ -6044,6 +6045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652629fecff6a4c8fa0a985e628de942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnTime: 2
   maxForwardSpeed: 5
   maxBackwardSpeed: 4
   acceleration: 20
@@ -6085,6 +6087,20 @@ MonoBehaviour:
   legsGeometry: []
   headGeometry: {fileID: 0}
   faceGeometry: {fileID: 0}
+--- !u!136 &6042469786885949400
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9030804398568673135}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 4.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &9095801659347569844
 GameObject:
   m_ObjectHideFlags: 0

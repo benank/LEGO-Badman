@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 6620079077071856742}
   - component: {fileID: 527243537426572321}
   - component: {fileID: 929349880722181412}
+  - component: {fileID: 580069327699364209}
   m_Layer: 0
   m_Name: FireFighter
   m_TagString: Untagged
@@ -697,6 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652629fecff6a4c8fa0a985e628de942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnTime: 2
   maxForwardSpeed: 5
   maxBackwardSpeed: 4
   acceleration: 20
@@ -738,6 +740,20 @@ MonoBehaviour:
   legsGeometry: []
   headGeometry: {fileID: 0}
   faceGeometry: {fileID: 0}
+--- !u!136 &580069327699364209
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859891109259650846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 4.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &915390031738146319
 GameObject:
   m_ObjectHideFlags: 0
