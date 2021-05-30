@@ -21,9 +21,10 @@ namespace Unity.LEGO.Minifig
         private float health = 3;
         private bool dead;
 
-        private int health = 3;
-
-        private int health = 3;
+        private float meleeCooldown = 0;
+        private float swordSwipeDuration;
+        private float swordReverseSwipeDuration;
+        private float currentAttackDuration = 0;
 
         void Awake()
         {
@@ -43,10 +44,31 @@ namespace Unity.LEGO.Minifig
 
             // Make enemy alive.
             dead = false;
+
+            AnimationClip[] clips =  animator.runtimeAnimatorController.animationClips;
+            foreach (AnimationClip clip in clips)
+            {
+                switch (clip.name)
+                {
+                    case "OneHandedReverseSwordSwingAnimation":
+                        swordReverseSwipeDuration = clip.length;
+                        break;
+                    case "OneHandedSwordSwingAnimation":
+                        swordSwipeDuration = clip.length;
+                        break;
+                }
+            }
         }
 
         void Update()
         {
+
+            if (meleeCooldown < currentAttackDuration)
+            {
+                meleeCooldown += Time.deltaTime;
+                return;
+            }
+
             // Update healthbar.
             healthbar.value = health / maxhealth;
 
@@ -90,7 +112,7 @@ namespace Unity.LEGO.Minifig
         private void Patrol()
         {
             // Move the Minifig and update position index.
-            minifig.SpecialAnimationFinished();
+            // minifig.SpecialAnimationFinished();
             minifig.StopFollowing();
             minifig.MoveTo(points[current].position);
             current = (current + 1) % points.Length;
@@ -99,7 +121,7 @@ namespace Unity.LEGO.Minifig
         private void ChasePlayer()
         {
             // Enemy will follow the player until enemy reaches attack distance.
-            minifig.SpecialAnimationFinished();
+            // minifig.SpecialAnimationFinished();
             minifig.Follow(player);
         }
 
@@ -108,7 +130,9 @@ namespace Unity.LEGO.Minifig
             // Enemy will stop following the player, will stop moving and attack.
             minifig.StopFollowing();
             minifig.ClearMoves();
-            minifig.PlaySpecialAnimation(0);
+            meleeCooldown = 0;
+            animator.Play("EnemyOneHandedSwordSwingAnimation");
+            currentAttackDuration = swordSwipeDuration;
         }
 
         void OnTriggerEnter(Collider other)

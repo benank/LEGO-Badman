@@ -55,7 +55,7 @@ public class BuildZone : TriggeredAction
         {
             foreach (TriggerableAction trigger in triggeredActions)
             {
-                trigger.onActivate.Invoke(new TriggerData(triggerType, triggered, triggered ? 1f : 0f));
+                trigger.onActivate.Invoke(new TriggerData(triggerType, triggered, triggered ? 1f : 0f, this.gameObject));
             }
             this.gameObject.SetActive(false);
         }
