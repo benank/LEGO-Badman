@@ -10,6 +10,8 @@ namespace Unity.LEGO.Minifig
     {
         [SerializeField] private float respawnTime = 2f;
         
+        private bool isSliding = false;
+        
         // Constants.
         const float stickyTime = 0.05f;
         const float stickyForce = 9.6f;
@@ -241,7 +243,38 @@ namespace Unity.LEGO.Minifig
             {
                 return;
             }
-
+            
+            if (controller.isGrounded || isSliding)
+            {
+                // Check if on a slope
+                RaycastHit hit;
+                
+                // Bit shift the index of the layer (8) to get a bit mask
+                int layerMask = 1 << 9;
+                
+                // This would cast rays only against colliders in layer 8.
+                // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+                layerMask = ~layerMask;
+                
+                // Does the ray intersect any objects excluding the player layer
+                if (Physics.Raycast(transform.position + Vector3.up * 2f, Vector3.down, out hit, 10f, layerMask))
+                {
+                    float angle = Vector3.Angle(hit.normal, Vector3.up);
+                    isSliding = angle > controller.slopeLimit;
+                }
+                else
+                {
+                    isSliding = false;
+                }
+                
+                if (!isSliding)
+                {
+                    
+                    moveDelta.y = 0.0f;
+                    airborneTime = 0.0f;
+                }
+            }
+            
             // Handle input.
             if (inputEnabled)
             {
@@ -348,9 +381,9 @@ namespace Unity.LEGO.Minifig
                 {
                     jumpsInAir = maxJumpsInAir;
                 }
-
+                
                 // Check if player is jumping.
-                if (Input.GetButtonDown("Jump"))
+                if (Input.GetButtonDown("Jump") && !isSliding)
                 {
                     if (!airborne || jumpsInAir > 0)
                     {
@@ -403,8 +436,11 @@ namespace Unity.LEGO.Minifig
                             {
                                 var direction = currentMove.destination - transform.position;
 
-                                // Neutralize y component.
-                                direction.y = 0.0f;
+                                if (!isSliding)
+                                {
+                                    // Neutralize y component.
+                                    direction.y = 0.0f;
+                                }
 
                                 if (direction.magnitude > currentMove.minDistance + distanceEpsilon)
                                 {
@@ -568,7 +604,7 @@ namespace Unity.LEGO.Minifig
 
             var wasGrounded = controller.isGrounded;
 
-            if (!controller.isGrounded)
+            if (!controller.isGrounded || isSliding)
             {
                 // Apply gravity.
                 moveDelta.y -= gravity * Time.deltaTime;
@@ -609,7 +645,7 @@ namespace Unity.LEGO.Minifig
             }
 
             // If becoming grounded by this Move, reset y movement and airborne time.
-            if (!wasGrounded && controller.isGrounded)
+            if (!wasGrounded && controller.isGrounded && !isSliding)
             {
                 // Play landing sound if landing sufficiently hard.
                 if (moveDelta.y < -5.0f)
