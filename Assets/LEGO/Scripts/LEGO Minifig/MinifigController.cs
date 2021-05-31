@@ -261,6 +261,58 @@ namespace Unity.LEGO.Minifig
                 {
                     float angle = Vector3.Angle(hit.normal, Vector3.up);
                     isSliding = angle > controller.slopeLimit;
+                    
+                    if (isSliding)
+                    {
+                        Vector3 slidingRotation = new Vector3(hit.normal.x, 0f, hit.normal.z).normalized;
+                        Vector3 target = hit.point + slidingRotation * 100;
+
+                        var targetSpeed = slidingRotation;
+                        if (targetSpeed.sqrMagnitude > 0.0f)
+                        {
+                            targetSpeed.Normalize();
+                        }
+                        targetSpeed *= maxForwardSpeed;
+
+                        var speedDiff = targetSpeed - directSpeed;
+                        if (speedDiff.sqrMagnitude < acceleration * acceleration * Time.deltaTime * Time.deltaTime)
+                        {
+                            directSpeed = targetSpeed;
+                        }
+                        else if (speedDiff.sqrMagnitude > 0.0f)
+                        {
+                            speedDiff.Normalize();
+
+                            directSpeed += speedDiff * acceleration * Time.deltaTime;
+                        }
+                        speed = directSpeed.magnitude;
+
+                        // Calculate rotation speed - ignore rotate acceleration.
+                        rotateSpeed = 0.0f;
+                        if (targetSpeed.sqrMagnitude > 0.0f)
+                        {
+                            var localTargetSpeed = transform.InverseTransformDirection(targetSpeed);
+                            var angleDiff = Vector3.SignedAngle(Vector3.forward, localTargetSpeed.normalized, Vector3.up);
+
+                            if (angleDiff > 0.0f)
+                            {
+                                rotateSpeed = maxRotateSpeed;
+                            }
+                            else if (angleDiff < 0.0f)
+                            {
+                                rotateSpeed = -maxRotateSpeed;
+                            }
+
+                            // Assumes that x > NaN is false - otherwise we need to guard against Time.deltaTime being zero.
+                            if (Mathf.Abs(rotateSpeed) > Mathf.Abs(angleDiff) / Time.deltaTime)
+                            {
+                                rotateSpeed = angleDiff / Time.deltaTime;
+                            }
+                        }
+
+                        // Calculate move delta.
+                        moveDelta = new Vector3(directSpeed.x, moveDelta.y, directSpeed.z);
+                    }
                 }
                 else
                 {
@@ -276,7 +328,7 @@ namespace Unity.LEGO.Minifig
             }
             
             // Handle input.
-            if (inputEnabled)
+            if (inputEnabled && !isSliding)
             {
                 switch (inputType)
                 {
