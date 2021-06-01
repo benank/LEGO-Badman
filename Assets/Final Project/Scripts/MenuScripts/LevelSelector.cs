@@ -10,9 +10,9 @@ public class LevelSelector : MonoBehaviour
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Main Menu");
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
+   public void LoadLevel1() 
+   {
+       SceneManager.LoadScene("Level_Tutorial");
+   }
 }
