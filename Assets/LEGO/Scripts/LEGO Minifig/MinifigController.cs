@@ -262,6 +262,15 @@ namespace Unity.LEGO.Minifig
                     float angle = Vector3.Angle(hit.normal, Vector3.up);
                     isSliding = angle > controller.slopeLimit;
                     
+                    // Check if object has the SlideOnObject component
+                    if (hit.collider.gameObject.TryGetComponent<SlideOnObject>(out var slideOnObject))
+                    {
+                        if (slideOnObject.slideEnabled)
+                        {
+                            isSliding = true;
+                        }
+                    }
+                    
                     if (isSliding)
                     {
                         Vector3 slidingRotation = new Vector3(hit.normal.x, 0f, hit.normal.z).normalized;
