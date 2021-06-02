@@ -137,7 +137,7 @@ namespace Unity.LEGO.Minifig
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "Player" && health > 0);
+            if (other.tag == "PlayerWeapon" && health > 0)
             {
                 // Player collider trigger, decrease health.
                 health = health - 1;
