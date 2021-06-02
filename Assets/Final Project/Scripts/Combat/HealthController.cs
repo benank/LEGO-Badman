@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.LEGO.Minifig;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,7 +38,11 @@ public class HealthController : MonoBehaviour
         if (currentHealth == maxHealth)
         {
             return;
-        } 
+        }
+        else if (currentHealth <= 0)
+        {
+            GetComponent<MinifigController>().Explode();
+        }
         else if (currentRegenDelay < healthRegenDelay)
         {
             currentRegenDelay += Time.deltaTime;
