@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,14 +23,37 @@ public class HealthController : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
-        currentRegenDelay = 0;
+        currentRegenDelay = healthRegenDelay;
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateHealth();
+    }
+
+    private void UpdateHealth()
+    {
+        if (currentHealth == maxHealth)
+        {
+            return;
+        } 
+        else if (currentRegenDelay < healthRegenDelay)
+        {
+            currentRegenDelay += Time.deltaTime;
+        }
+        else
+        {
+            currentHealth += healthRegenRate * Time.deltaTime;
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+        }
+
         // Update healthbar.
         healthBar.value = currentHealth / maxHealth;
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -38,6 +62,7 @@ public class HealthController : MonoBehaviour
         {
             // Player collider trigger, decrease health.
             currentHealth = currentHealth - 1;
+            currentRegenDelay = 0;
         }
     }
 }
