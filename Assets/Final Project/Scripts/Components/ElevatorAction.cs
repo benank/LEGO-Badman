@@ -14,10 +14,6 @@ public class ElevatorAction : Interactable.TriggerableAction
     [SerializeField] private List<string> triggerTags = new List<string>();
     [SerializeField] private bool isActive = true;
 
-    [SerializeField]
-    private GameObject Player;
-
-
     void Awake()
     {
         this.onActivate = delegate (Interactable.TriggerData td)
