@@ -5,6 +5,7 @@ using UnityEngine;
 public class RespawnManager : MonoBehaviour
 {
     [SerializeField] private float respawnTime = 2f;
+    [SerializeField] private GameObject deathEffect;
     
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class RespawnManager : MonoBehaviour
     
     IEnumerator RespawnCoroutine(Unity.LEGO.Game.DeathEvent evt)
     {
+        Destroy(GameObject.Instantiate(deathEffect, evt.player.transform.position, evt.player.transform.rotation), 2f);
         yield return new WaitForSeconds(respawnTime);
         evt.player.GetComponent<Unity.LEGO.Minifig.MinifigController>().Respawn(LastSafezone.GetLastSafePosition());
     }
