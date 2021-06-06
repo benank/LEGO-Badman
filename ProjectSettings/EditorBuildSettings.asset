@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Final Project/Scenes/Level_Tutorial.unity
     guid: e1d007db20d5158419e225adaf0b6988
   - enabled: 1
-    path: Assets/Final Project/Scenes/LevelComplete.unity
+    path: Assets/LevelComplete.unity
     guid: 74db0423de73b4f76af73e7935f8666d
   - enabled: 1
     path: Assets/Final Project/Scenes/Level_try.unity
