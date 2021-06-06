@@ -14,6 +14,7 @@ TagManager:
   - Loot Spawn Point
   - Lootable
   - Weapon
+  - Camera
   layers:
   - Default
   - TransparentFX
