@@ -1246,7 +1246,6 @@ GameObject:
   - component: {fileID: 294715791}
   - component: {fileID: 294715790}
   - component: {fileID: 294715789}
-  - component: {fileID: 294715788}
   - component: {fileID: 294715787}
   m_Layer: 11
   m_Name: Cylinder (1)
@@ -1282,20 +1281,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716bd4a577183c340887e1f92db3b4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggeredActions: []
+  triggerInput: Fire1
   HealthPoints: 100
   ItemsManager: {fileID: 0}
---- !u!114 &294715788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 294715785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f21416cd59cd41347956abc1a5c6ef3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  destroyRadius: 10
 --- !u!64 &294715789
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4225,7 +4215,7 @@ PrefabInstance:
     - target: {fileID: 901963992360562709, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.33821607
+      value: -0.33821604
       objectReference: {fileID: 0}
     - target: {fileID: 901963992360562709, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
@@ -4240,7 +4230,7 @@ PrefabInstance:
     - target: {fileID: 901963992360562709, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.13976051
+      value: -0.13976055
       objectReference: {fileID: 0}
     - target: {fileID: 1317988910663466154, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
@@ -4255,7 +4245,7 @@ PrefabInstance:
     - target: {fileID: 2277315378633421898, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9638459
+      value: 0.96384597
       objectReference: {fileID: 0}
     - target: {fileID: 2277315378633421898, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
@@ -4265,12 +4255,12 @@ PrefabInstance:
     - target: {fileID: 2277315378633421898, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.22942147
+      value: -0.2294215
       objectReference: {fileID: 0}
     - target: {fileID: 2277315378633421898, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.096250474
+      value: 0.096250445
       objectReference: {fileID: 0}
     - target: {fileID: 3783571660357773273, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
@@ -4300,42 +4290,42 @@ PrefabInstance:
     - target: {fileID: 4925682700574489215, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9638459
-      objectReference: {fileID: 0}
-    - target: {fileID: 4925682700574489215, guid: a2c34d55913ebbd48ad5d58cd165c425,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.09540817
-      objectReference: {fileID: 0}
-    - target: {fileID: 4925682700574489215, guid: a2c34d55913ebbd48ad5d58cd165c425,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.22942147
-      objectReference: {fileID: 0}
-    - target: {fileID: 4925682700574489215, guid: a2c34d55913ebbd48ad5d58cd165c425,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.096250474
-      objectReference: {fileID: 0}
-    - target: {fileID: 7329632189292665683, guid: a2c34d55913ebbd48ad5d58cd165c425,
-        type: 3}
-      propertyPath: m_LocalRotation.w
       value: 0.96384597
       objectReference: {fileID: 0}
-    - target: {fileID: 7329632189292665683, guid: a2c34d55913ebbd48ad5d58cd165c425,
+    - target: {fileID: 4925682700574489215, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.09540817
       objectReference: {fileID: 0}
-    - target: {fileID: 7329632189292665683, guid: a2c34d55913ebbd48ad5d58cd165c425,
+    - target: {fileID: 4925682700574489215, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: -0.2294215
       objectReference: {fileID: 0}
-    - target: {fileID: 7329632189292665683, guid: a2c34d55913ebbd48ad5d58cd165c425,
+    - target: {fileID: 4925682700574489215, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.096250445
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329632189292665683, guid: a2c34d55913ebbd48ad5d58cd165c425,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9638459
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329632189292665683, guid: a2c34d55913ebbd48ad5d58cd165c425,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.09540817
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329632189292665683, guid: a2c34d55913ebbd48ad5d58cd165c425,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.22942147
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329632189292665683, guid: a2c34d55913ebbd48ad5d58cd165c425,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.096250474
       objectReference: {fileID: 0}
     - target: {fileID: 8038151204292912027, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
@@ -7292,7 +7282,6 @@ GameObject:
   - component: {fileID: 1963277662}
   - component: {fileID: 1963277661}
   - component: {fileID: 1963277660}
-  - component: {fileID: 1963277659}
   - component: {fileID: 1963277658}
   m_Layer: 0
   m_Name: Capsule
@@ -7328,20 +7317,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716bd4a577183c340887e1f92db3b4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggeredActions: []
+  triggerInput: Fire1
   HealthPoints: 100
   ItemsManager: {fileID: 0}
---- !u!114 &1963277659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1963277656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f21416cd59cd41347956abc1a5c6ef3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  destroyRadius: 10
 --- !u!136 &1963277660
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7587,7 +7567,6 @@ GameObject:
   - component: {fileID: 1997499127}
   - component: {fileID: 1997499126}
   - component: {fileID: 1997499125}
-  - component: {fileID: 1997499124}
   - component: {fileID: 1997499123}
   m_Layer: 11
   m_Name: Cylinder (2)
@@ -7623,20 +7602,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716bd4a577183c340887e1f92db3b4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggeredActions: []
+  triggerInput: Fire1
   HealthPoints: 100
   ItemsManager: {fileID: 0}
---- !u!114 &1997499124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1997499121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f21416cd59cd41347956abc1a5c6ef3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  destroyRadius: 10
 --- !u!64 &1997499125
 MeshCollider:
   m_ObjectHideFlags: 0
