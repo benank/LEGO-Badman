@@ -18691,6 +18691,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.13976048
       objectReference: {fileID: 0}
+    - target: {fileID: 4146660208450103942, guid: a2c34d55913ebbd48ad5d58cd165c425,
+        type: 3}
+      propertyPath: m_CollideAgainst.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4146660208450103943, guid: a2c34d55913ebbd48ad5d58cd165c425,
         type: 3}
       propertyPath: m_LocalPosition.x
