@@ -7,6 +7,7 @@ public class LavaBrain : MonoBehaviour
     [SerializeField] public float LavaRisingRate;
     [SerializeField] public bool IsRising;
     [SerializeField] private float RiseDistance;
+    private Vector3 riseStopPoint;
     private GameObject lava;
 
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class LavaBrain : MonoBehaviour
     private void Awake()
     {
         lava = GameObject.Find("Lava");
+        riseStopPoint = transform.position + new Vector3(0.0f, RiseDistance, 0.0f);
     }
 
     // Update is called once per frame
@@ -25,7 +27,16 @@ public class LavaBrain : MonoBehaviour
     {
         if (IsRising)
         {
-            lava.transform.position += new Vector3(0.0f, LavaRisingRate * Time.deltaTime, 0.0f);
+            Vector3 rise = new Vector3(0.0f, LavaRisingRate * Time.deltaTime, 0.0f);
+            if (lava.transform.position.y + rise.y >= riseStopPoint.y)
+            {
+                IsRising = false;
+                lava.transform.position = riseStopPoint;
+            }
+            else
+            {
+                lava.transform.position += new Vector3(0.0f, LavaRisingRate * Time.deltaTime, 0.0f);
+            }
         }
     }
 
