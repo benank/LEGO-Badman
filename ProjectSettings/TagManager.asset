@@ -7,7 +7,6 @@ TagManager:
   - Projectile
   - TutorialRequirement
   - Interactable
-  - Weapon
   - Pushable
   - Selectable
   - Collector

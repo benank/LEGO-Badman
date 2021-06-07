@@ -7,16 +7,26 @@ public class ItemController : MonoBehaviour
     [SerializeField] private List<int> ItemsHeld = new List<int>();
     [SerializeField] private Transform ItemDropSpawnPoint;
     [SerializeField] private string ItemSpawnPointTag = "Loot Spawn Point";
+    [SerializeField] private string LootableObjectTag = "Lootable";
 
     private void Start()
     {
+        // Set spawn point for all loot.
+        // Set to transform position of object, unless a specific point was chosen in its child objects.
         var transformChildren = this.gameObject.GetComponentsInChildren<Transform>();
+        ItemDropSpawnPoint = this.transform;
         foreach (var child in transformChildren)
         {
             if(child.gameObject.CompareTag(ItemSpawnPointTag)){
                 ItemDropSpawnPoint = child;
                 break;
             }
+        }
+        // Check if this object is a lootable object (or is a child of one).
+        // Randomize its loot is yes.
+        if (this.gameObject.CompareTag(LootableObjectTag) || this.transform.parent.CompareTag(LootableObjectTag))
+        {
+            CreateRandomItemTable();
         }
     }
 

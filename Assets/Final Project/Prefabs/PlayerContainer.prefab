@@ -261,6 +261,36 @@ Transform:
   m_Father: {fileID: 7534870562915096401}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 15.384995, y: -150.99104, z: 9.164188}
+--- !u!1 &500630602070785889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3257029472477428165}
+  m_Layer: 0
+  m_Name: Loot Collector
+  m_TagString: Collector
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3257029472477428165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500630602070785889}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 569306759070114599}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &515185874835509009
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +932,7 @@ Transform:
   m_Children:
   - {fileID: 4535550631248185053}
   m_Father: {fileID: 569306759070114599}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1381694924625906618
 GameObject:
@@ -1265,7 +1295,7 @@ RectTransform:
   m_Children:
   - {fileID: 3628063992185685717}
   m_Father: {fileID: 569306759070114599}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3239,7 +3269,7 @@ Transform:
   - {fileID: 2986467540088782649}
   - {fileID: 2946680203940008630}
   m_Father: {fileID: 569306759070114599}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4477141173989725321
 GameObject:
@@ -5145,6 +5175,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 3257029472477428165}
   - {fileID: 4861665616668971084}
   - {fileID: 9112195141364742606}
   - {fileID: 3833567973896258695}
