@@ -6,6 +6,7 @@ public class LavaBrain : MonoBehaviour
 {    
     [SerializeField] public float LavaRisingRate;
     [SerializeField] public bool IsRising;
+    [SerializeField] private float RiseDistance;
     private GameObject lava;
 
     // Start is called before the first frame update
@@ -26,5 +27,15 @@ public class LavaBrain : MonoBehaviour
         {
             lava.transform.position += new Vector3(0.0f, LavaRisingRate * Time.deltaTime, 0.0f);
         }
+    }
+
+    public void ChangeRiseSpeed(float speed)
+    {
+        LavaRisingRate = speed;
+    }
+
+    public void IncrementRiseSpeed(float speed)
+    {
+        LavaRisingRate += speed;
     }
 }
