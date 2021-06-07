@@ -8,7 +8,11 @@ public class AppearAction : Interactable.TriggerableAction
     [SerializeField] private bool isInitiallyHidden = true;
     
     private bool isHidden;
-    
+
+    [Tooltip("If true, next trigger will toggle the visibility.")]
+    [SerializeField]
+    private bool toggleVisibility = false;
+
     void Start()
     {
         this.onActivate = delegate (Interactable.TriggerData td)
@@ -22,8 +26,16 @@ public class AppearAction : Interactable.TriggerableAction
 
     void Triggered(Interactable.TriggerData td)
     {
-        isHidden = td.pressedAmount == 0;
-        gameObject.SetActive(!isHidden);
+        if (toggleVisibility && td.pressedAmount == 1)
+        {
+            isHidden = !isHidden;
+            gameObject.SetActive(!isHidden);
+        }
+        else
+        {
+            isHidden = td.pressedAmount == 0;
+            gameObject.SetActive(!isHidden);
+        }
     }
     
 }
