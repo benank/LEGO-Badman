@@ -10,13 +10,6 @@ public class LevelSelector : MonoBehaviour
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Main Menu");
     }
-<<<<<<< Updated upstream:Assets/Final Project/Scripts/MenuScripts/LevelSelector.cs
-   
-   public void LoadLevel1() 
-   {
-       SceneManager.LoadScene("Level_Tutorial");
-   }
-=======
    public void LoadLevel1_1()
     {
         Time.timeScale = 1.0f;
@@ -39,5 +32,4 @@ public class LevelSelector : MonoBehaviour
     {
         
     }
->>>>>>> Stashed changes:Assets/Final Project/Scripts/LevelSelector.cs
 }
