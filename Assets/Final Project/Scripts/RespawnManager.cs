@@ -23,6 +23,7 @@ public class RespawnManager : MonoBehaviour
     {
         Destroy(GameObject.Instantiate(deathEffect, evt.player.transform.position, evt.player.transform.rotation), 2f);
         yield return new WaitForSeconds(respawnTime);
+        evt.player.GetComponent<HealthController>().OnRespawn();
         evt.player.GetComponent<Unity.LEGO.Minifig.MinifigController>().Respawn(LastSafezone.GetLastSafePosition());
     }
 }
