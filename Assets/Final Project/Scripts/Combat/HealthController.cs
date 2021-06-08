@@ -15,16 +15,24 @@ public class HealthController : MonoBehaviour
     private float currentRegenDelay;
     [SerializeField] private Slider healthBar;
 
+    private bool dead = false;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    private void Awake()
+    public void OnRespawn()
     {
         currentHealth = maxHealth;
         currentRegenDelay = healthRegenDelay;
+        dead = false;
+    }
+
+    private void Awake()
+    {
+        OnRespawn();
     }
 
     // Update is called once per frame
@@ -35,12 +43,15 @@ public class HealthController : MonoBehaviour
 
     private void UpdateHealth()
     {
+        if (dead) {return;}
+        
         if (currentHealth == maxHealth)
         {
             return;
         }
         else if (currentHealth <= 0)
         {
+            dead = true;
             GetComponent<MinifigController>().Explode();
         }
         else if (currentRegenDelay < healthRegenDelay)
