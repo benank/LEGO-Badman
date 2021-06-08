@@ -6,7 +6,7 @@ public class BlueprintSpecs : MonoBehaviour
 {
     // Allows other scripts to access as a singleton script.
     public static BlueprintSpecs instance = null;
-
+    [SerializeField]
     public Dictionary<string, List<int>> Blueprints = new Dictionary<string, List<int>>()
     {
       {"Lever",new List<int>{0, 0, 0, 4, 4}}

@@ -13,22 +13,27 @@ public class BuildZone : TriggeredAction
     private bool triggered = false;
     private bool playerInTriggerZone = false;
 
+    [Tooltip("Name of the input button/key that builds the object")]
+    [SerializeField] private string triggerInput = "Fire1";
+
     private void Awake()
     {
-        if (this.GetComponent<EventController>() != null)
-        {
-            this.gameObject.GetComponent<EventController>().Event1 = OnActivate;
-        }
-
         var colliderSubscriber = gameObject.GetComponentInChildren<IColliderSubscriber<Collider, bool>>();
         if (colliderSubscriber != null)
         {
             colliderSubscriber.callbackEvent += OnTriggerEnterExit;
         }
     }
+    private void Update()
+    {
+        if (Input.GetButtonDown(triggerInput) && playerInTriggerZone)
+        {
+            OnActivate();
+        }
+    }
     void OnTriggerEnterExit(Collider other, bool entered)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             playerInTriggerZone = entered;
         }
@@ -44,10 +49,6 @@ public class BuildZone : TriggeredAction
 
     public override void OnActivate()
     {
-
-        if (!playerInTriggerZone)
-            return;
-
         if (triggered) { return; }
         triggered = true;
 

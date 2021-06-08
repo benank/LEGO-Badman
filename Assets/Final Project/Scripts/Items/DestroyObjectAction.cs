@@ -12,22 +12,22 @@ public class DestroyObjectAction : TriggeredAction
 
     [SerializeField] private float HealthPoints = 100f;
     [SerializeField] private ItemController ItemsManager;
-    [SerializeField] private float destroyRadius = 10f;
+    [SerializeField] private float destroyRadius = 5f;
+    
+    private ShakeObject ObjectShaker;
+    [SerializeField] private float ShakeDuration = 0.1f;
+
+
     private void Awake()
     {
-        if (this.GetComponent<EventController>() != null)
-        {
-            this.gameObject.GetComponent<EventController>().Event1 = DamageObject;
-        }
         if (this.GetComponent<ItemController>() == null)
         {
             ItemsManager = this.gameObject.AddComponent<ItemController>();
         }
-    }
-
-    public void Start()
-    {
-        ItemsManager.CreateRandomItemTable();
+        if (this.GetComponent<ShakeObject>() == null)
+        {
+            ObjectShaker = this.gameObject.AddComponent<ShakeObject>();
+        }
     }
     void Update()
     {
@@ -39,14 +39,20 @@ public class DestroyObjectAction : TriggeredAction
                 OnActivate();
         }
     }
+
     public override void OnActivate()
     {
         if (triggered) { return; }
         triggered = true;
         DamageObject();
-        // TODO: check if melee cooldown is done.
+        // Suggestion: check if melee cooldown is done.
+
+        // Shake object visually
+        ObjectShaker.Shake(ShakeDuration);
+ 
         triggered = false;
     }
+
     public void DamageObject()
     {
         HealthPoints -= 25f;
