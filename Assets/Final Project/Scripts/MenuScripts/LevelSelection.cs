@@ -25,7 +25,7 @@ public class LevelSelection : MonoBehaviour
     public void LoadLevelTutorial_3()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("VolcanoParkour");
+        SceneManager.LoadScene("IndoorPuzzleScene");
     }
 
     public void LoadLevelIce()
