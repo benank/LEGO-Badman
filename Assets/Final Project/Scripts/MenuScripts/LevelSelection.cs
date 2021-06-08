@@ -37,7 +37,7 @@ public class LevelSelection : MonoBehaviour
     public void LoadLevelVolcano()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("VolcanoParkour");
+        SceneManager.LoadScene("Volcano");
     }
     // Update is called once per frame
     void Update()
