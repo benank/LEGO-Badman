@@ -3,26 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelSelector : MonoBehaviour
+public class LevelSelection : MonoBehaviour
 {
     public void MainMenu()
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Main Menu");
     }
-   public void LoadLevel1_1()
+   public void LoadLevelTutorial_1()
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Level_Tutorial");
     }
 
-    public void LoadLevel2_1()
+    public void LoadLevelTutorial_2()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("Blueprint Test Scene");
+    }
+
+    public void LoadLevelTutorial_3()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("VolcanoParkour");
+    }
+
+    public void LoadLevelIce()
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("Level_try");
     }
 
-    public void LoadLevel2_2()
+    public void LoadLevelVolcano()
     {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("VolcanoParkour");
@@ -33,3 +45,4 @@ public class LevelSelector : MonoBehaviour
         
     }
 }
+
