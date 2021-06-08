@@ -20050,6 +20050,7 @@ GameObject:
   - component: {fileID: 2558083019476260013}
   - component: {fileID: 2558083019476260007}
   - component: {fileID: 2558083019476260005}
+  - component: {fileID: -419004650308150499}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Interactable
@@ -20186,6 +20187,23 @@ MonoBehaviour:
   triggerInput: Activate
   oneTimeUse: 0
   resetTime: 2
+--- !u!114 &-419004650308150499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2558083019476260012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba6f3c817cfb6c4ab5097f3184730b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemsHeld: 0000000000000000000000000400000004000000
+  ItemDropSpawnPoint: {fileID: 0}
+  ItemSpawnPointTag: Loot Spawn Point
+  LootableObjectTag: Lootable
+  isInventoryFixed: 0
 --- !u!1 &2558083019506639143
 GameObject:
   m_ObjectHideFlags: 0
