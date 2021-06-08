@@ -9,6 +9,7 @@ public class ItemController : MonoBehaviour
     [SerializeField] private string ItemSpawnPointTag = "Loot Spawn Point";
     [SerializeField] private string LootableObjectTag = "Lootable";
 
+    [SerializeField] public bool isInventoryFixed = false;
     private void Start()
     {
         // Set spawn point for all loot.
@@ -26,7 +27,8 @@ public class ItemController : MonoBehaviour
         // Randomize its loot is yes.
         if (this.gameObject.CompareTag(LootableObjectTag) || this.transform.parent.CompareTag(LootableObjectTag))
         {
-            CreateRandomItemTable();
+            if(!isInventoryFixed)
+                CreateRandomItemTable();
         }
     }
 

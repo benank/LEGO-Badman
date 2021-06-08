@@ -24,9 +24,18 @@ public class DestroyObjectAction : TriggeredAction
         {
             ItemsManager = this.gameObject.AddComponent<ItemController>();
         }
+        else
+        {
+            ItemsManager = this.gameObject.GetComponent<ItemController>();
+        }
+
         if (this.GetComponent<ShakeObject>() == null)
         {
             ObjectShaker = this.gameObject.AddComponent<ShakeObject>();
+        }
+        else
+        {
+            ObjectShaker = this.gameObject.GetComponent<ShakeObject>();
         }
     }
     void Update()
