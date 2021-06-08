@@ -112,7 +112,6 @@ namespace Unity.LEGO.Minifig
         private void Patrol()
         {
             // Move the Minifig and update position index.
-            // minifig.SpecialAnimationFinished();
             minifig.StopFollowing();
             minifig.MoveTo(points[current].position);
             current = (current + 1) % points.Length;
@@ -121,7 +120,6 @@ namespace Unity.LEGO.Minifig
         private void ChasePlayer()
         {
             // Enemy will follow the player until enemy reaches attack distance.
-            // minifig.SpecialAnimationFinished();
             minifig.Follow(player);
         }
 

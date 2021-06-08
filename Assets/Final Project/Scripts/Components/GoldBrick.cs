@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Collider))]
 public class GoldBrick : MonoBehaviour
@@ -41,7 +42,7 @@ public class GoldBrick : MonoBehaviour
             // Trigger game win event
             Unity.LEGO.Game.Events.GameOverEvent.Win = true;
             Unity.LEGO.Game.EventManager.Broadcast(Unity.LEGO.Game.Events.GameOverEvent);
-            
+            SceneManager.LoadScene("LevelComplete");
             // To subscribe to events, use the following code:
             /*
                 Unity.LEGO.Game.EventManager.AddListener<GameOverEvent>(OnGameOver);
