@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Collider))]
 public class GoldBrick : MonoBehaviour
@@ -12,6 +13,8 @@ public class GoldBrick : MonoBehaviour
     
     private Vector3 originalPosition;
     private Quaternion originalRotation;
+
+    private bool gotBrick = false;
     
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,11 @@ public class GoldBrick : MonoBehaviour
         Quaternion rotation = new Quaternion();
         rotation.eulerAngles = new Vector3(0, Time.time * rotationSpeed, 0);
         transform.rotation = originalRotation * rotation;
+
+        if (gotBrick)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime);
+        }
     }
     
     void OnTriggerEnter(Collider other)
@@ -41,15 +49,21 @@ public class GoldBrick : MonoBehaviour
             // Trigger game win event
             Unity.LEGO.Game.Events.GameOverEvent.Win = true;
             Unity.LEGO.Game.EventManager.Broadcast(Unity.LEGO.Game.Events.GameOverEvent);
-            
+            StartCoroutine(LoadLevelComplete());
+            gotBrick = true;
             // To subscribe to events, use the following code:
             /*
                 Unity.LEGO.Game.EventManager.AddListener<GameOverEvent>(OnGameOver);
                 ...
                 void OnGameOver(GameOverEvent evt) {}
             */
-            
-            Destroy(this);
         }
+    }
+
+    IEnumerator LoadLevelComplete()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("LevelComplete");
+        Destroy(this.gameObject);
     }
 }

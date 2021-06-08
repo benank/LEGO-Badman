@@ -7,14 +7,15 @@ TagManager:
   - Projectile
   - TutorialRequirement
   - Interactable
-  - Weapon
   - Pushable
   - Selectable
   - Collector
   - Loot Spawn Point
   - Lootable
   - Weapon
-  - Camera
+  - Enemy
+  - PlayerWeapon
+  - EnemyWeapon
   layers:
   - Default
   - TransparentFX

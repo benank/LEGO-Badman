@@ -31,10 +31,10 @@ public class DistributeMinimumItems : MonoBehaviour
     private void Distrubute()
     {
         // Add lootable objects to list
-        var itemControllers =  FindObjectsOfType<ItemController>();
+        var itemControllers = FindObjectsOfType<ItemController>();
         foreach (var itemController in itemControllers)
         {
-            if (itemController.transform.parent.CompareTag(LootableTag)) {
+            if (itemController.gameObject.CompareTag(LootableTag) || itemController.transform.parent.CompareTag(LootableTag)) {
                 allLootableObjects.Add(itemController);
             }
         }
