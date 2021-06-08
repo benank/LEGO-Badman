@@ -10,6 +10,8 @@ namespace Unity.LEGO.Minifig
     {
         [SerializeField] private float respawnTime = 2f;
         
+        private bool isSliding = false;
+        
         // Constants.
         const float stickyTime = 0.05f;
         const float stickyForce = 9.6f;
@@ -241,9 +243,101 @@ namespace Unity.LEGO.Minifig
             {
                 return;
             }
+            
+            if (controller.isGrounded || isSliding)
+            {
+                // Check if on a slope
+                RaycastHit hit;
+                
+                // Bit shift the index of the layer (8) to get a bit mask
+                int layerMask = 1 << 9;
+                
+                // This would cast rays only against colliders in layer 8.
+                // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+                layerMask = ~layerMask;
+                
+                // Does the ray intersect any objects excluding the player layer
+                if (Physics.Raycast(transform.position + Vector3.up * 2f, Vector3.down, out hit, 10f, layerMask))
+                {
+                    float angle = Vector3.Angle(hit.normal, Vector3.up);
+                    isSliding = angle > controller.slopeLimit;
+                    
+                    // Check if object has the SlideOnObject component
+                    if (hit.collider.gameObject.TryGetComponent<SlideOnObject>(out var slideOnObject))
+                    {
+                        if (slideOnObject.slideEnabled)
+                        {
+                            isSliding = true;
+                        }
+                    }
+                    
+                    if (isSliding)
+                    {
+                        Vector3 slidingRotation = new Vector3(hit.normal.x, 0f, hit.normal.z).normalized;
+                        Vector3 target = hit.point + slidingRotation * 100;
 
+                        var targetSpeed = slidingRotation;
+                        if (targetSpeed.sqrMagnitude > 0.0f)
+                        {
+                            targetSpeed.Normalize();
+                        }
+                        targetSpeed *= maxForwardSpeed;
+
+                        var speedDiff = targetSpeed - directSpeed;
+                        if (speedDiff.sqrMagnitude < acceleration * acceleration * Time.deltaTime * Time.deltaTime)
+                        {
+                            directSpeed = targetSpeed;
+                        }
+                        else if (speedDiff.sqrMagnitude > 0.0f)
+                        {
+                            speedDiff.Normalize();
+
+                            directSpeed += speedDiff * acceleration * Time.deltaTime;
+                        }
+                        speed = directSpeed.magnitude;
+
+                        // Calculate rotation speed - ignore rotate acceleration.
+                        rotateSpeed = 0.0f;
+                        if (targetSpeed.sqrMagnitude > 0.0f)
+                        {
+                            var localTargetSpeed = transform.InverseTransformDirection(targetSpeed);
+                            var angleDiff = Vector3.SignedAngle(Vector3.forward, localTargetSpeed.normalized, Vector3.up);
+
+                            if (angleDiff > 0.0f)
+                            {
+                                rotateSpeed = maxRotateSpeed;
+                            }
+                            else if (angleDiff < 0.0f)
+                            {
+                                rotateSpeed = -maxRotateSpeed;
+                            }
+
+                            // Assumes that x > NaN is false - otherwise we need to guard against Time.deltaTime being zero.
+                            if (Mathf.Abs(rotateSpeed) > Mathf.Abs(angleDiff) / Time.deltaTime)
+                            {
+                                rotateSpeed = angleDiff / Time.deltaTime;
+                            }
+                        }
+
+                        // Calculate move delta.
+                        moveDelta = new Vector3(directSpeed.x, moveDelta.y, directSpeed.z);
+                    }
+                }
+                else
+                {
+                    isSliding = false;
+                }
+                
+                if (!isSliding)
+                {
+                    
+                    moveDelta.y = 0.0f;
+                    airborneTime = 0.0f;
+                }
+            }
+            
             // Handle input.
-            if (inputEnabled)
+            if (inputEnabled && !isSliding)
             {
                 switch (inputType)
                 {
@@ -348,9 +442,9 @@ namespace Unity.LEGO.Minifig
                 {
                     jumpsInAir = maxJumpsInAir;
                 }
-
+                
                 // Check if player is jumping.
-                if (Input.GetButtonDown("Jump"))
+                if (Input.GetButtonDown("Jump") && !isSliding)
                 {
                     if (!airborne || jumpsInAir > 0)
                     {
@@ -403,8 +497,11 @@ namespace Unity.LEGO.Minifig
                             {
                                 var direction = currentMove.destination - transform.position;
 
-                                // Neutralize y component.
-                                direction.y = 0.0f;
+                                if (!isSliding)
+                                {
+                                    // Neutralize y component.
+                                    direction.y = 0.0f;
+                                }
 
                                 if (direction.magnitude > currentMove.minDistance + distanceEpsilon)
                                 {
@@ -568,7 +665,7 @@ namespace Unity.LEGO.Minifig
 
             var wasGrounded = controller.isGrounded;
 
-            if (!controller.isGrounded)
+            if (!controller.isGrounded || isSliding)
             {
                 // Apply gravity.
                 moveDelta.y -= gravity * Time.deltaTime;
@@ -609,7 +706,7 @@ namespace Unity.LEGO.Minifig
             }
 
             // If becoming grounded by this Move, reset y movement and airborne time.
-            if (!wasGrounded && controller.isGrounded)
+            if (!wasGrounded && controller.isGrounded && !isSliding)
             {
                 // Play landing sound if landing sufficiently hard.
                 if (moveDelta.y < -5.0f)

@@ -22,11 +22,17 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+
+        if (!GameisPaused && Cursor.visible)
+        {
+            ToggleMouseVisible(false);
+        }
     }
 
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        // ToggleMouseVisible(false); // Do this in update so it works
         Time.timeScale = 1.0f;
         GameisPaused = false; 
     }
@@ -34,13 +40,21 @@ public class PauseMenu : MonoBehaviour
     void Pause()
     {
         pauseMenuUI.SetActive(true);
+        ToggleMouseVisible(true);
         Time.timeScale = 0.0f;
         GameisPaused = true; 
+    }
+
+    void ToggleMouseVisible(bool isVisible)
+    {
+        Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = isVisible;
     }
 
     public void LoadMenu()
     {
         Time.timeScale = 1.0f;
+        ToggleMouseVisible(true);
         SceneManager.LoadScene("Main Menu");
     }
 }
