@@ -26,6 +26,8 @@ namespace Unity.LEGO.Minifig
         private float swordReverseSwipeDuration;
         private float currentAttackDuration = 0;
 
+        private AudioSource audioSource;
+
         void Awake()
         {
             // Get information about enemy and player.
@@ -58,6 +60,8 @@ namespace Unity.LEGO.Minifig
                         break;
                 }
             }
+
+            audioSource = GetComponent<AudioSource>();
         }
 
         void Update()
@@ -138,6 +142,7 @@ namespace Unity.LEGO.Minifig
             if (other.tag == "PlayerWeapon" && health > 0)
             {
                 // Player collider trigger, decrease health.
+                audioSource.Play();
                 health = health - 1;
             }
         }
