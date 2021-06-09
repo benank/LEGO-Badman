@@ -116,12 +116,8 @@ The walking and jump sounds are default audio clips provided by the LEGO game pa
 
 ### Gameplay Testing
 
-As the gameplay tester, you are responsible for having 10 non-team members playtest your game. You fill out the Observation and Playtester Comments form for each of your playtesters and describe the results in the design document (after you share the results with your tea, of course!). For each playtester, fill out an [Observations and Playetester Comments form](https://docs.google.com/document/d/1oW7AulzjpEocDmMikRL0S0PKxlRrOxsEEP7KB-nGg-A/edit?usp=sharing).
-
-**Add a link to the full results of your gameplay tests.**
-
-**Summarize the key findings from your gameplay tests.**
-
+As gameplay tester, my focus was on making sure the components seemlessly worked with each other. I designed two levels - one that mainly tests destroyigng objects, collecting, loot and building a blueprint. The other level is longer and tests all the major systems like building, component use (triggering actions), enemy fighting.
+As we playtested - many bugs and suggestions came about which we integrated over time like better pushable rocks, removing camera clipping, and fixing enemy combat collider inconsistencies.
 
 ### Press Kit and Trailer
 
