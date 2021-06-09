@@ -18,10 +18,11 @@ public class DistributeMinimumItems : MonoBehaviour
         // Find items needed.
         foreach (var blueprintName in MinimumRequiredBlueprints)
         {
-            List<int> recipe;
-            BlueprintSpecs.instance.Blueprints.TryGetValue(blueprintName, out recipe);
-
-            CalculateItemCounts(recipe);
+            bool isValid = BlueprintSpecs.instance.Blueprints.TryGetValue(blueprintName, out List<int> recipe);
+            if (isValid)
+                CalculateItemCounts(recipe);
+            else
+                Debug.LogWarning("Blueprint <" + blueprintName + "> not found in blueprint specs list.");
         }
 
         // Minimum needed items calculated, time to distribute.
@@ -35,8 +36,14 @@ public class DistributeMinimumItems : MonoBehaviour
         foreach (var itemController in itemControllers)
         {
             if (itemController.gameObject.CompareTag(LootableTag) || itemController.transform.parent.CompareTag(LootableTag)) {
-                allLootableObjects.Add(itemController);
+                if(!itemController.isInventoryFixed)
+                    allLootableObjects.Add(itemController);
             }
+        }
+        if(allLootableObjects.Count == 0)
+        {
+            // No objects available to distrbute to.
+            return;
         }
         // Distribute items to list
         foreach (var item in itemTypeCounts)
@@ -44,7 +51,7 @@ public class DistributeMinimumItems : MonoBehaviour
             // For every item type (item.Key), distribute n items (=item.Value) randomly.
             for (int i = 0; i < item.Value; ++i)
             {
-                int index = Random.Range(0, itemTypeCounts.Count);
+                int index = Random.Range(0, allLootableObjects.Count);
                 allLootableObjects[index].CollectItem(item.Key);
             }
         }

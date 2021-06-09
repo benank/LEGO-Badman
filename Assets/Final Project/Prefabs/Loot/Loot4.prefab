@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 7383032455975816591}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4889396283549132105}
   m_Father: {fileID: 0}
@@ -124,6 +124,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4891944850009692335, guid: e654ff5767d454a44b9504df6b96c572,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dfaff0ef5ef03ed49bab69b5e5433d32, type: 2}
+    - target: {fileID: -1337519971783620682, guid: e654ff5767d454a44b9504df6b96c572,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dfaff0ef5ef03ed49bab69b5e5433d32, type: 2}
+    - target: {fileID: 20798465462013205, guid: e654ff5767d454a44b9504df6b96c572,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dfaff0ef5ef03ed49bab69b5e5433d32, type: 2}
     - target: {fileID: 919132149155446097, guid: e654ff5767d454a44b9504df6b96c572,
         type: 3}
       propertyPath: m_Name
@@ -134,6 +149,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6425275128284125085, guid: e654ff5767d454a44b9504df6b96c572,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dfaff0ef5ef03ed49bab69b5e5433d32, type: 2}
+    - target: {fileID: 6581822611583739707, guid: e654ff5767d454a44b9504df6b96c572,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dfaff0ef5ef03ed49bab69b5e5433d32, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e654ff5767d454a44b9504df6b96c572, type: 3}
 --- !u!4 &4889396283549132105 stripped
