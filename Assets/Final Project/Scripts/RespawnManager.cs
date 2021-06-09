@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RespawnManager : MonoBehaviour
 {
     [SerializeField] private float respawnTime = 2f;
     [SerializeField] private GameObject deathEffect;
+    [SerializeField] private bool oneLife = false;
     
     // Start is called before the first frame update
     void Start()
@@ -16,7 +18,24 @@ public class RespawnManager : MonoBehaviour
     
     void OnPlayerDeath(Unity.LEGO.Game.DeathEvent evt)
     {
-        StartCoroutine(RespawnCoroutine(evt));
+        if (oneLife)
+        {
+            // Trigger game win event
+            Unity.LEGO.Game.Events.GameOverEvent.Win = true;
+            Unity.LEGO.Game.EventManager.Broadcast(Unity.LEGO.Game.Events.GameOverEvent);
+            StartCoroutine(LoadGameOver(evt));
+        }
+        else
+        {
+            StartCoroutine(RespawnCoroutine(evt));
+        }
+    }
+
+    IEnumerator LoadGameOver(Unity.LEGO.Game.DeathEvent evt)
+    {
+        Destroy(GameObject.Instantiate(deathEffect, evt.player.transform.position, evt.player.transform.rotation), 2f);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("GameOver");
     }
     
     IEnumerator RespawnCoroutine(Unity.LEGO.Game.DeathEvent evt)
