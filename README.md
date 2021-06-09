@@ -31,9 +31,15 @@ Some Specifics:
   a. This level focuses on putting everything together, solving simple puzzles like finding an interesting way to bring a rock onto a button, having multiple buttons that require trial and error to spawn a platform to climb and some parkour that may require a single/double jump, depending on the distance.  
   b. Solving these puzzles requires the player to beware of enemies patrolling the area and can be solved with or without killing them.  
   
-4. Tutorial Scene  
-  a. This level was originally planned as a tutorial level to introduce the player to various aspects of the game, such as parkour, levers, buttons, and pushable objects, such as rocks.  
-  b. After escaping the initial rock prison, the player fights some guards and then must find a way to go down the middle path to obtain the gold brick. There are two side paths that the player can complete in any order to be able to teleport rocks back to the main area to hold the buttons down to open the gates to the gold brick.  
+4. Volcano Scene
+This level is primarily a platformer that focuses on speed and precision. The player starts at the base of an erupting volcano and has to scale the inside of the volcano using the moving rocks and internal structure of the volcano itself.
+There are several types of moving platforms that behave differently with and without the player. For example, there are platforms that float down once the player steps on them and there are platforms that move side to side independent of the player.
+Once the player reaches the last rock platform, it will levitate the player to the mouth of the volcano where the gold brick awaits.
+
+5. Tutorial Scene
+This level was originally planned as a tutorial level to introduce the player to various aspects of the game, such as parkour, levers, buttons, and pushable objects, such as rocks.
+After escaping the initial rock prison, the player fights some guards and then must find a way to go down the middle path to obtain the gold brick. There are two side paths that the player can complete in any order to be able to teleport rocks back to the main area to hold the buttons down to open the gates to the gold brick.
+
 
 To interact with the levels, players will be using the `Left Mouse Button` to perform melee attacks, the `F` key for interacting with levers, and the `Space` key for jumping and double-jumping.
 
