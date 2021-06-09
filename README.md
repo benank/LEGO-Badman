@@ -123,11 +123,6 @@ As the gameplay tester, you are responsible for having 10 non-team members playt
 **Summarize the key findings from your gameplay tests.**
 
 
-### Narrative Design
-
-**Document how the narrative is present in the game via assets, gameplay systems, and gameplay.**
-
-
 ### Press Kit and Trailer
 
 https://gameplayproject.wixsite.com/legobadman (Trailer in the presskit website)
