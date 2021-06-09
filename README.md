@@ -52,7 +52,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 ### User Interface
 
-The user interface for our game is pretty straightforward. I created a theme for the different menu displays as well as connected all the buttons to the necessary scenes with different scripts for each screen. For example, the first scene has instructions to “click to play” that takes you to the main menu. Here is the script attached to the front screen: (TODO: add). After the front screen, the main menu can navigate the player to the level selector screen where we have a list of the different levels created. In addition, I have created a “Game Over” scene that is displayed when the player loses and allows them to try again or go back to the main menu. There is also a pause option using Escape that lets the player pause the game mid play (https://github.com/benank/LEGO-Badman/blob/main/Assets/Final%20Project/Scripts/PauseMenu.cs). There is also a level complete screen. In addition to the main UI navigation of the game, I also created an Inventory UI which allows the player to see what resources they currently have in order to build.
+The user interface for our game is pretty straightforward. I created a theme for the different menu displays as well as connected all the buttons to the necessary scenes with different scripts for each screen. For example, the first scene has instructions to “click to play” that takes you to the main menu. Here is the script attached to the front screen: https://github.com/benank/LEGO-Badman/blob/main/Assets/Final%20Project/Scripts/MenuScripts/FrontScreen.cs#L10 After the front screen, the main menu can navigate the player to the level selector screen where we have a list of the different levels created. In addition, I have created a “Game Over” scene that is displayed when the player loses and allows them to try again or go back to the main menu. There is also a pause option using Escape that lets the player pause the game mid play (https://github.com/benank/LEGO-Badman/blob/main/Assets/Final%20Project/Scripts/PauseMenu.cs). There is also a level complete screen. In addition to the main UI navigation of the game, I also created an Inventory UI which allows the player to see what resources they currently have and the count of each item in order to build in the correct build zones. This script is in charge of keeping count of each item in inventory: https://github.com/benank/LEGO-Badman/blob/main/Assets/Final%20Project/Scripts/InventoryPanelItemCounter.cs 
 
 
 ### Enemies
@@ -136,6 +136,9 @@ Default Input Configuration: `Left Mouse Button` is used to perform melee attack
 The player navigates the level with WASD keys and look around using the mouse. All of the menus are used with mouse clicks and to pause, click `Escape`.
 
 Overall, we just use the mouse and keyboard to navigate through the game. 
+
+Another task I wanted to complete was adding cut scenes before each level to give the player an overview of what to expect in the level. I started this process using Cinemachine and Virtual Cameras in a Timeline animation. Unfortunately, I ran out of time and this will not be showcased in our game. 
+
 
 
 ### Game Feel
