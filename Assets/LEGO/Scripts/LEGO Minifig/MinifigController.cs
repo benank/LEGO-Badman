@@ -323,14 +323,9 @@ namespace Unity.LEGO.Minifig
                         moveDelta = new Vector3(directSpeed.x, moveDelta.y, directSpeed.z);
                     }
                 }
-                else
-                {
-                    isSliding = false;
-                }
                 
                 if (!isSliding)
                 {
-                    
                     moveDelta.y = 0.0f;
                     airborneTime = 0.0f;
                 }
