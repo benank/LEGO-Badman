@@ -28,6 +28,7 @@ public class HealthController : MonoBehaviour
         currentHealth = maxHealth;
         currentRegenDelay = healthRegenDelay;
         dead = false;
+        healthBar.value = currentHealth / maxHealth;
     }
 
     private void Awake()

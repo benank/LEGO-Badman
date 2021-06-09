@@ -1361,9 +1361,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 5e2f6a3402e45e3408dde8b814f48fa8, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1484,7 +1484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTime: 2
-  maxForwardSpeed: 5
+  maxForwardSpeed: 10
   maxBackwardSpeed: 4
   acceleration: 20
   maxRotateSpeed: 150
@@ -1571,7 +1571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chasedistance: 20
-  attackdistance: 3
+  attackdistance: 2
   healthbar: {fileID: 2845357490299440837}
   hidehealthbar: 0
   points:
