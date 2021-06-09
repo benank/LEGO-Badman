@@ -14,6 +14,12 @@ public class RespawnManager : MonoBehaviour
     {
         LastSafezone.SetLastSafePosition(GameObject.FindGameObjectWithTag("Player").transform.position);
         Unity.LEGO.Game.EventManager.AddListener<Unity.LEGO.Game.DeathEvent>(OnPlayerDeath);
+        GameInfo.ActiveScene = SceneManager.GetActiveScene().name;
+    }
+    
+    void OnDestroy()
+    {
+        Unity.LEGO.Game.EventManager.RemoveListener<Unity.LEGO.Game.DeathEvent>(OnPlayerDeath);
     }
     
     void OnPlayerDeath(Unity.LEGO.Game.DeathEvent evt)
