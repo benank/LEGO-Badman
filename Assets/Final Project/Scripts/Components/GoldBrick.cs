@@ -67,6 +67,8 @@ public class GoldBrick : MonoBehaviour
     {
         audioSource.Play();
         yield return new WaitForSeconds(3f);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene("LevelComplete");
         Destroy(this.gameObject);
     }
