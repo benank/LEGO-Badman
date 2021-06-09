@@ -45,17 +45,6 @@ To interact with the levels, players will be using the `Left Mouse Button` to pe
 
 # Main Roles #
 
-Your goal is to relate the work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
-
-Below is a template for you to highlight items of your work. These provide the evidence needed for your work to be evaluated. Try to have at least 4 such descriptions. They will be assessed on the quality of the underlying system and how they are linked to course content. 
-
-*Short Description* - Long description of your work item that includes how it is relevant to topics discussed in class. [link to evidence in your repository](https://github.com/dr-jam/ECS189L/edit/project-description/ProjectDocumentTemplate.md)
-
-Here is an example:  
-*Procedural Terrain* - The background of the game consists of procedurally-generated terrain that is produced with Perlin noise. This terrain can be modified by the game at run-time via a call to its script methods. The intent is to allow the player to modify the terrain. This system is based on the component design pattern and the procedural content generation portions of the course. [The PCG terrain generation script](https://github.com/dr-jam/CameraControlExercise/blob/513b927e87fc686fe627bf7d4ff6ff841cf34e9f/Obscura/Assets/Scripts/TerrainGenerator.cs#L6).
-
-You should replay any **bold text** with your relevant information. Liberally use the template when necessary and appropriate.
-
 ### User Interface
 
 The user interface for our game is pretty straightforward. I created a theme for the different menu displays as well as connected all the buttons to the necessary scenes with different scripts for each screen. For example, the first scene has instructions to “click to play” that takes you to the main menu. Here is the script attached to the front screen: https://github.com/benank/LEGO-Badman/blob/main/Assets/Final%20Project/Scripts/MenuScripts/FrontScreen.cs#L10 After the front screen, the main menu can navigate the player to the level selector screen where we have a list of the different levels created. In addition, I have created a “Game Over” scene that is displayed when the player loses and allows them to try again or go back to the main menu. There is also a pause option using Escape that lets the player pause the game mid play (https://github.com/benank/LEGO-Badman/blob/main/Assets/Final%20Project/Scripts/PauseMenu.cs). There is also a level complete screen. In addition to the main UI navigation of the game, I also created an Inventory UI which allows the player to see what resources they currently have and the count of each item in order to build in the correct build zones. This script is in charge of keeping count of each item in inventory: https://github.com/benank/LEGO-Badman/blob/main/Assets/Final%20Project/Scripts/InventoryPanelItemCounter.cs 
