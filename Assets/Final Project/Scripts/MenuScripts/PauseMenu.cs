@@ -29,6 +29,11 @@ public class PauseMenu : MonoBehaviour
         //}
     }
 
+    private void Awake()
+    {
+        ToggleMouseVisible(false);
+    }
+
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
