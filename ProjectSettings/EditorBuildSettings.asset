@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Final Project/Scenes/Level Selection.unity
     guid: 05726a3a3c8bd44b09782118347b1f83
   - enabled: 1
-    path: Assets/LEGO/Scenes/LEGO Tutorial.unity
-    guid: c117ceea613454843a1d1c28c25d7a94
-  - enabled: 1
     path: Assets/LEGO/Scenes/Menu Intro.unity
     guid: 77504b30d92956e4ab45b9e740f2d454
   - enabled: 1
@@ -29,9 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Final Project/Scenes/IndoorPuzzleScene.unity
     guid: e9ea04f0aeb87a848bc350151cc47f54
-  - enabled: 0
-    path: Assets/Final Project/Scenes/LevelSelection.unity
-    guid: 1f5aecc157d2b420488ad01b8d5a38ae
   - enabled: 1
     path: Assets/Final Project/Scenes/Level_Tutorial.unity
     guid: e1d007db20d5158419e225adaf0b6988
@@ -53,4 +47,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Final Project/Scenes/Pause.unity
     guid: a09ea9fd089f143e2ba0f8e0eee68da2
+  - enabled: 1
+    path: Assets/Final Project/Scenes/FrontScreen.unity
+    guid: d4d25273d082f4bcc853b3cbda8a4734
+  - enabled: 1
+    path: Assets/Final Project/Scenes/LevelComplete.unity
+    guid: e05a7d711cd7428408d8545d241fae3a
   m_configObjects: {}
