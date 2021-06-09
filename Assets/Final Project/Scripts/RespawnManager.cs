@@ -17,6 +17,11 @@ public class RespawnManager : MonoBehaviour
         GameInfo.ActiveScene = SceneManager.GetActiveScene().name;
     }
     
+    void OnDestroy()
+    {
+        Unity.LEGO.Game.EventManager.RemoveListener<Unity.LEGO.Game.DeathEvent>(OnPlayerDeath);
+    }
+    
     void OnPlayerDeath(Unity.LEGO.Game.DeathEvent evt)
     {
         if (oneLife)
