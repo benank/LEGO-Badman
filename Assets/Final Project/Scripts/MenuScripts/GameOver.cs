@@ -8,7 +8,13 @@ public class GameOver : MonoBehaviour
     public void PlayAgain()
     {
         // reload the level scene 
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(GameInfo.ActiveScene);
+    }
+
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void QuitGame()
