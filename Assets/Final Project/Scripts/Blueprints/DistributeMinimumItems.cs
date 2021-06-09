@@ -35,7 +35,7 @@ public class DistributeMinimumItems : MonoBehaviour
         var itemControllers = FindObjectsOfType<ItemController>();
         foreach (var itemController in itemControllers)
         {
-            if (itemController.gameObject.CompareTag(LootableTag) || itemController.transform.parent.CompareTag(LootableTag)) {
+            if (itemController.gameObject.CompareTag(LootableTag) || (itemController.transform.parent != null && itemController.transform.parent.CompareTag(LootableTag))) {
                 if(!itemController.isInventoryFixed)
                     allLootableObjects.Add(itemController);
             }
