@@ -5,14 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelComplete : MonoBehaviour
 {
-    public void TryAgain()
-    {
-        // play scene right before this 
-    }
 
     public void QuitGame()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Level Selection");
     }
 }
