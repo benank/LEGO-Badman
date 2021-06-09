@@ -17,7 +17,8 @@ namespace Interactable
 
         [SerializeField] private GameObject particleEffects;
         [SerializeField] private GameObject particleEffectsTrail;
-        
+
+        private AudioSource audioSource;
         /// <summary>
         /// The teleport location attached to this teleporter.
         /// </summary>
@@ -47,6 +48,8 @@ namespace Interactable
             {
                 colliderSubscriber.callbackEvent += OnTriggerEnterExit;
             }
+
+            audioSource = GetComponent<AudioSource>();
         }
         
         public void AddRecentlyTeleportedGameObject(GameObject go)
@@ -80,10 +83,11 @@ namespace Interactable
             SpawnParticleEffects(go);
 
             StartCoroutine(SpawnTrailFX(go.transform, linkedTeleporter.teleportLocation));
-
             linkedTeleporter.AddRecentlyTeleportedGameObject(go);
+            audioSource.Play();
             yield return new WaitForSeconds(0.25f);
             go.transform.position = linkedTeleporter.teleportLocation.position;
+            audioSource.Play();
             yield return new WaitForSeconds(0.25f);
             go.SetActive(true);
             SpawnParticleEffects(go);
