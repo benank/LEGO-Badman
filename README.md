@@ -57,7 +57,7 @@ The enemy AI was a bit tricky, I had to first test the patrol, I tried looking u
 The health bar is made using a slider and works in a similar way to the health bar in the last project we did in class, although the enemies do not regenerate. Also, there is an option to not show the health bar [Healthbar](https://github.com/benank/LEGO-Badman/blob/85c8717cceb08ba7283ccb28f4dc18799a8f6d9a/Assets/Final%20Project/Scripts/Enemies/EnemyAI2.cs#L36). When the health bar hits 0, the enemy plays a sleeping animation and is destroyed after 2 seconds, to wait for the animation to finish [Enemy Death](https://github.com/benank/LEGO-Badman/blob/85c8717cceb08ba7283ccb28f4dc18799a8f6d9a/Assets/Final%20Project/Scripts/Enemies/EnemyAI2.cs#L76).
 
 
-### Animation and Visuals
+### Combat, Animations and Visuals
 
 For combat, there are a few animations that are played to represent a wide sword swing, a reverse wide sword swing, and an impale. When the player presses the `Left Mouse Button` it will play a random melee animation with it’s appropriate sound-clip to provide an immersive combat experience. The jumping, double-jumping, lever-pulling, walking, and enemy death animations are built-in animations from the LEGO game package.
 
