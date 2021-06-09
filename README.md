@@ -95,19 +95,24 @@ These three components were successfully designed and integrated into the game s
 
 ### Audio
 
-**List your assets including their sources and licenses.**
+All of the background audio and some of the sound effects were retrieved from youtube. Here’s the link to each background music:
 
-**Describe the implementation of your audio system.**
+Outdoor level: https://www.youtube.com/watch?v=wKnS8VPxpHI&t=162s
 
-**Document the sound style.**
+Indoor level: https://www.youtube.com/watch?v=ZA5EW-DKS6M&t=108s
+
+Snow level: https://www.youtube.com/watch?v=IC4kgqcFEME
+
+Volcano level: https://www.youtube.com/watch?v=sDMoVmrbvT8
+
+
+Each level that uses background music has a game object called “Background Music” which plays the appropriate soundtrack for the level on a loop. The music that’s played is 2D, meaning the sound volume doesn’t increase or decrease depending on the distance of the player from the actual “Background Music” object.
+
+Other sounds that are played include the teleportation sound, sword swing sounds, GOLD BRICK pick up sound, the default death sound, and enemy damage sound. Those sounds are bound to their appropriate objects and are played when a condition is met. For example, the GOLD BRICK pick up sound is only played when the player collides with the GOLD BRICK.
 
 The sounds for each melee animation are the same audio clip but they play at different times during their animations to sync with their appropriate animation. Each melee animation is associated with an audio clip and when a random animation is played, it’s audio clip is played. 
 
 The walking and jump sounds are default audio clips provided by the LEGO game package.
- 
-**add more stuff once more audio is added**
-
-
 
 ### Gameplay Testing
 
