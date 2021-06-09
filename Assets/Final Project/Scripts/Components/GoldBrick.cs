@@ -15,12 +15,15 @@ public class GoldBrick : MonoBehaviour
     private Quaternion originalRotation;
 
     private bool gotBrick = false;
+
+    private AudioSource audioSource;
     
     // Start is called before the first frame update
     void Start()
     {
         originalPosition = transform.position;
         originalRotation = transform.rotation;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -62,6 +65,7 @@ public class GoldBrick : MonoBehaviour
 
     IEnumerator LoadLevelComplete()
     {
+        audioSource.Play();
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("LevelComplete");
         Destroy(this.gameObject);
