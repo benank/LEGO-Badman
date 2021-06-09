@@ -7,6 +7,8 @@ public class RotateAround : MonoBehaviour
     [SerializeField] private Transform rotatePoint;
     [SerializeField] private float speed = 1f;
     
+    private float timeElapsed = 0f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,7 @@ public class RotateAround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(rotatePoint.position, Vector3.up, Time.time * speed);
+        transform.RotateAround(rotatePoint.position, Vector3.up, timeElapsed * speed);
+        timeElapsed += Time.deltaTime;
     }
 }
