@@ -27,9 +27,6 @@ EditorBuildSettings:
     path: Assets/Final Project/Scenes/Volcano.unity
     guid: f28e1d555ebf62844abe77f737f54400
   - enabled: 1
-    path: Assets/LevelComplete.unity
-    guid: 74db0423de73b4f76af73e7935f8666d
-  - enabled: 1
     path: Assets/Final Project/Scenes/Level_try.unity
     guid: 51801baec79c7ec45beeb606c8e218c4
   - enabled: 1
