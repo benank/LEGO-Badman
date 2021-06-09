@@ -23,16 +23,21 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-        if (!GameisPaused && Cursor.visible)
-        {
-            ToggleMouseVisible(false);
-        }
+        //if (!GameisPaused && Cursor.visible)
+        //{
+        //    ToggleMouseVisible(false);
+        //}
+    }
+
+    private void Awake()
+    {
+        ToggleMouseVisible(false);
     }
 
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
-        // ToggleMouseVisible(false); // Do this in update so it works
+        ToggleMouseVisible(false); // Do this in update so it works
         Time.timeScale = 1.0f;
         GameisPaused = false; 
     }
