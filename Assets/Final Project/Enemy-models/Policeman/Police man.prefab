@@ -1484,7 +1484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnTime: 2
-  maxForwardSpeed: 5
+  maxForwardSpeed: 10
   maxBackwardSpeed: 4
   acceleration: 20
   maxRotateSpeed: 150
@@ -1571,7 +1571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chasedistance: 20
-  attackdistance: 3
+  attackdistance: 2
   healthbar: {fileID: 2845357490299440837}
   hidehealthbar: 0
   points:

@@ -2610,8 +2610,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 31745
-  m_IgnoreTag: 
+    m_Bits: 15361
+  m_IgnoreTag: Enemy
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7378,7 +7378,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8625124585175067644}
-  m_LocalRotation: {x: -0.095408194, y: -0.22942147, z: 0.09625046, w: 0.96384597}
+  m_LocalRotation: {x: -0.09540817, y: -0.22942147, z: 0.096250474, w: 0.9638459}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
