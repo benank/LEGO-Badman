@@ -1,5 +1,7 @@
 # Game Basic Information #
 
+In order to reduce Git LFS size, many assets have been moved [here](https://drive.google.com/file/d/1vcKeX-9o9Zm0jV4fliOYQbPGnK9siIUT/view?usp=sharing).
+
 ## Summary ##
 
 In a world that looks like a low budget commercial for LEGO, you must use your skills, weapons, and brain to solve the puzzles and complete each level. Beware though! Some levels have traps and enemies that you must avoid or destroy. Destroy objects to gain bricks and use those bricks to build new LEGO sets to progress through each level. Use your environment to your advantage to traverse and get closer to the end.
